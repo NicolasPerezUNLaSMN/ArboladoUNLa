@@ -1,0 +1,177 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+<title>Nosotros &mdash; Arbolado Urbano UNLa</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+            <div class="site-section"  data-aos="fade">
+              <div class="container-fluid">
+
+                <div class="row justify-content-center">
+
+                  <div class="col-md-7">
+                    <div class="row mb-5">
+                      <div class="col-12 ">
+                        <h2 class="site-section-heading text-center">Estadísticas generales</h2>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+                
+
+                <!--Bolque por especies-->
+                <div class="row mb-5">
+                  <div class="col-md-7">
+                    <img src="{% static 'ProyectoWebApp/images/unla_pasillo.jpg' %}" alt="Images" class="img-fluid">
+                  </div>
+                  <div class="col-md-4 ml-auto">
+                    <h3 class="text-white">Por especies</h3>
+
+
+
+                    <canvas id="doughnut-chart" width="800" height="450"></canvas>
+                    <script>
+                              new Chart(document.getElementById("doughnut-chart"), {
+                        type: 'doughnut',
+                        data: {
+                          labels: {{ especies| safe}},
+                          datasets: [
+                            {
+                              label: "Especies, cantidades censadas",
+                              backgroundColor:{{colores|safe}},
+                              data: {{cantidades|safe}}
+                            }
+                          ]
+                        },
+                        options: {
+                          title: {
+                            display: true,
+                            text: 'Espcies censadas'
+                          }
+                        }
+                    });
+                    </script>
+
+
+
+
+
+
+
+                    <br>
+                    <p style="text-align: center;" class="mb-0"><a  href="#">Cantidades de especies censadas a la fecha.</a></p>
+                   
+                  </div>
+                </div>
+
+
+                <div class="row site-section">
+
+
+
+
+                  <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
+                    <h3 class="text-white">Por estados sanitarios</h3>
+                    <img src="{% static 'ProyectoWebApp/images/arboles.jpg' %}" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
+                    <h2 class="text-black font-weight-light mb-4">Estados Sanitarios</h2>
+
+                   
+
+                    <canvas id="doughnut-chart-usuarios" width="800" height="450"></canvas>
+                    <script>
+                              new Chart(document.getElementById("doughnut-chart-usuarios"), {
+                        type: 'doughnut',
+                        data: {
+                          labels: {{estados|safe}},
+                          datasets: [
+                            {
+                              label: "Según estados sanitarios",
+                              backgroundColor:{{colores|safe}},
+                              data: {{cantidadesEstados|safe}}
+                            }
+                          ]
+                        },
+                        options: {
+                          title: {
+                            display: true,
+                            text: 'Según estados sanitarios'
+                          }
+                        }
+                    });
+                    </script>
+
+                
+                     
+
+                    <br>
+                    <p style="text-align: center;" class="mb-0"><a  href="#">Conteo de estados sanitarios de los arboles.</a></p>
+                   
+                    <p>
+                      <a href="#" class="pl-0 pr-3"><span class="icon-twitter"></span></a>
+                      <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                      <a href="#" class="pl-3 pr-3"><span class="icon-facebook"></span></a>
+                    </p>
+                  </div>
+
+
+                  
+                  <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
+                    <h3 class="text-white">Por daños generados</h3>
+                    <img src="{% static 'ProyectoWebApp/images/veredas.jpg' %}" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
+                    <h2 class="text-black font-weight-light mb-4">Según daños</h2>
+
+                    <canvas id="doughnut-chart-afecto" width="800" height="450"></canvas>
+                    <script>
+                              new Chart(document.getElementById("doughnut-chart-afecto"), {
+                        type: 'doughnut',
+                        data: {
+                          labels: {{afecto|safe}},
+                          datasets: [
+                            {
+                              label: 'Mayor cantidad de daños',
+                              backgroundColor:{{colores|safe}},
+                              data: {{cantidadesAfecto|safe}}
+                            }
+                          ]
+                        },
+                        options: {
+                          title: {
+                            display: true,
+                            text: 'Mayor cantidad de daños'
+                          }
+                        }
+                    });
+                    </script>
+
+                    
+                    <br>
+                    <p style="text-align: center;" class="mb-0"><a  href="#">Conteo de daños generados por los árboles.</a></p>
+
+                  
+                    <p>
+                      <a href="#" class="pl-0 pr-3"><span class="icon-twitter"></span></a>
+                      <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                      <a href="#" class="pl-3 pr-3"><span class="icon-facebook"></span></a>
+                    </p>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+    {% endblock %}

@@ -1,0 +1,1088 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+
+
+
+
+{% block title %}
+<title>Nuevo Arbol &mdash; Arbolado Urbano UNLa</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    <div class="site-section"  data-aos="fade">
+      <div class="container">
+
+        <div class="row justify-content-center">
+
+          <div class="col-md-7">
+
+           
+         
+           <h6 style="color:rgb(0, 255, 213);" class="text-center"> Hola :) <b>{{request.user.username}}</b></h6>
+
+            <div class="row mb-5">
+              <div class="col-12 ">
+                <h2 class="site-section-heading text-center">Censar nuevo árbol</h2>
+
+                {% if mensajeError == "¡¡¡ El formulario no ha sido válido, verifique enviar una imagen como mínimo... !!!"  %}
+                    <h6 style="color:crimson" class="text-center">{{mensajeError}}</h6>
+                {% else %}
+                    <h6 style="color:chartreuse" class="text-center">{{mensajeError}}</h6>
+                {% endif %}
+
+
+
+               
+              </div>
+
+
+              
+                
+                 
+  
+                
+                
+            
+
+
+
+            </div>
+          </div>
+
+
+         
+
+        </div>
+        
+     
+
+
+
+
+        <div class="row">
+          <div class="col-lg-8 mb-5">
+
+
+           
+
+
+            <form action="" method="POST" enctype="multipart/form-data" >  <!--Cuidado con la info automatica-->
+
+              {% csrf_token %}
+
+
+              
+
+              <div class="row form-group">
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="calle">Calle</label>
+                  <input type="text" id="calle" name="calle" class="form-control">
+
+                   
+
+                </div>
+
+                <div class="col-md-6">
+                  <label class="text-white" for="numeroDeFrente">Número de frente</label>
+                  <input value="0" type="number" id="numeroDeFrente" name="numeroDeFrente" class="form-control">
+                </div>
+
+              </div>
+
+              <div class="row form-group">
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="calle">Ancho de vereda (cm)</label>
+                  <input value="0" type="number" id="anchoDeVereda" name="anchoDeVereda" class="form-control">
+                </div>
+                
+                <div class="col-md-12">
+                  <label class="text-white" for="paridad">Paridad</label> 
+                 
+
+                  <select name="paridad" class="form-control">
+
+                 
+                  <option selected disabled value="" style="background:black;" class="text-white">Elija  paridad:</option>
+                  <option style="background:black;" class="text-white">PAR</option>
+
+                  <option style="background:black;" class="text-white">IMPAR</option>
+
+
+
+                  </select>
+
+
+                </div>
+                
+
+              </div>
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="transito">Tránsito</label> 
+                 
+
+                  <select name="transito" class="form-control">
+
+             
+                  <option selected disabled value="" style="background:black;" class="text-white">Transito:</option>
+                  <option style="background:black;" class="text-white">PESADO</option>
+
+                  <option style="background:black;" class="text-white">PARTICULAR</option>
+
+
+
+                  </select>
+
+
+                </div>
+              </div>
+
+
+
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="especie">Especie</label> 
+                 
+
+                  <select name="especie" class="form-control">   
+
+                    <option selected disabled value="VACIA" style="background:black;" class="text-white">Especie:</option>
+                        <option style="background:black;" class="text-white">OTRO</option>
+                        <option style="background:black;" class="text-white">Desconocido</option>
+                        <option style="background:black;" class="text-white">Alamo carolina</option>
+                        <option style="background:black;" class="text-white">Alamo de Italia</option>
+                        <option style="background:black;" class="text-white">Alamo negro del Canada</option>
+                        <option style="background:black;" class="text-white">Alamo plateado</option>
+                        <option style="background:black;" class="text-white">Arbol del amor (Ciclamor o Arbol de Judas)</option>
+                        <option style="background:black;" class="text-white">Arbol del cielo (Ailanto o Arbol de los dioses)</option>
+                        <option style="background:black;" class="text-white">Arbol del humo</option>
+                        <option style="background:black;" class="text-white">Arbol fuccia</option>
+                        <option style="background:black;" class="text-white">Abedul blanco</option>
+                        <option style="background:black;" class="text-white">Abedul comun (Abedul de Europa o Abedul verrugoso)</option>
+                        <option style="background:black;" class="text-white">Abutilo</option>
+                        <option style="background:black;" class="text-white">Acacia</option>
+                        <option style="background:black;" class="text-white">Acacia blanca</option>
+                        <option style="background:black;" class="text-white">Acacia bola</option>
+                        <option style="background:black;" class="text-white">Acacia de Baile (Mimosa de Baile)</option>
+                        <option style="background:black;" class="text-white">Acacia de constantinopla</option>
+                        <option style="background:black;" class="text-white">Acacia frisia</option>
+                        <option style="background:black;" class="text-white">Acacia negra</option>
+                        <option style="background:black;" class="text-white">Acacia rosada</option>
+                        <option style="background:black;" class="text-white">Acacia verde</option>
+                        <option style="background:black;" class="text-white">Adelfa amarilla</option>
+                        <option style="background:black;" class="text-white">Aesculus</option>
+                        <option style="background:black;" class="text-white">Afrocarpus</option>
+                        <option style="background:black;" class="text-white">Agatis blanco</option>
+                        <option style="background:black;" class="text-white">Agave vivipara</option>
+                        <option style="background:black;" class="text-white">Aguaribay</option>
+                        <option style="background:black;" class="text-white">Ahuehuete</option>
+                        <option style="background:black;" class="text-white">Alamo</option>
+                        <option style="background:black;" class="text-white">Alamo negro</option>
+                        <option style="background:black;" class="text-white">Alcanforero</option>
+                        <option style="background:black;" class="text-white">Alcornoque</option>
+                        <option style="background:black;" class="text-white">Algarrobo</option>
+                        <option style="background:black;" class="text-white">Algarrobo Blanco</option>
+                        <option style="background:black;" class="text-white">Aliso de ra¬o</option>
+                        <option style="background:black;" class="text-white">Almez (Almecino o Almecina)</option>
+                        <option style="background:black;" class="text-white">Almez de china</option>
+                        <option style="background:black;" class="text-white">Añangapira¬ (Grosella o Cereza de Cayena)</option>
+                        <option style="background:black;" class="text-white">Aralia</option>
+                        <option style="background:black;" class="text-white">Aralia elegantisima</option>
+                        <option style="background:black;" class="text-white">Aralia variegada</option>
+                        <option style="background:black;" class="text-white">Araucaria</option>
+                        <option style="background:black;" class="text-white">Araucaria (Araucaria de pisos)</option>
+                        <option style="background:black;" class="text-white">Araucaria columnar</option>
+                        <option style="background:black;" class="text-white">Arbol de las orquideas</option>
+                        <option style="background:black;" class="text-white">Arbol de las pasas</option>
+                        <option style="background:black;" class="text-white">Arbol del pomelo</option>
+                        <option style="background:black;" class="text-white">Arce</option>
+                        <option style="background:black;" class="text-white">Arce blanco</option>
+                        <option style="background:black;" class="text-white">Arce campestre (Arce comun o Arce menor)</option>
+                        <option style="background:black;" class="text-white">Arce japones</option>
+                        <option style="background:black;" class="text-white">Arce negundo</option>
+                        <option style="background:black;" class="text-white">Arce plateado (Arce blanco)</option>
+                        <option style="background:black;" class="text-white">Arce real</option>
+                        <option style="background:black;" class="text-white">Arce tridente</option>
+                        <option style="background:black;" class="text-white">Areca</option>
+                        <option style="background:black;" class="text-white">Arizanica (Cipres de Arizona)</option>
+                        <option style="background:black;" class="text-white">Aromo</option>
+                        <option style="background:black;" class="text-white">ArrayAn (Anacahuita)</option>
+                        <option style="background:black;" class="text-white">Aruera</option>
+                        <option style="background:black;" class="text-white">Avellano comun</option>
+                        <option style="background:black;" class="text-white">Azarero</option>
+                        <option style="background:black;" class="text-white">Bananero</option>
+                        <option style="background:black;" class="text-white">Betula</option>
+                        <option style="background:black;" class="text-white">Boj cepillo</option>
+                        <option style="background:black;" class="text-white">Boj comun</option>
+                        <option style="background:black;" class="text-white">Bola de nieve</option>
+                        <option style="background:black;" class="text-white">Boungavillea</option>
+                        <option style="background:black;" class="text-white">Brachichito rosa</option>
+                        <option style="background:black;" class="text-white">Brachichiton (Arbol botella Brachichito)</option>
+                        <option style="background:black;" class="text-white">Braquiquito</option>
+                        <option style="background:black;" class="text-white">Bunya-bunya (Araucaria de Bidwill)</option>
+                        <option style="background:black;" class="text-white">Caesalpinia</option>
+                        <option style="background:black;" class="text-white">Callistemon</option>
+                        <option style="background:black;" class="text-white">Camelia</option>
+                        <option style="background:black;" class="text-white">camellia</option>
+                        <option style="background:black;" class="text-white">Canela de venado</option>
+                        <option style="background:black;" class="text-white">Canelan</option>
+                        <option style="background:black;" class="text-white">Caoba del sur</option>
+                        <option style="background:black;" class="text-white">Capparis</option>
+                        <option style="background:black;" class="text-white">Caqui</option>
+                        <option style="background:black;" class="text-white">Caranday</option>
+                        <option style="background:black;" class="text-white">Carnaval(Vainillo)</option>
+                        <option style="background:black;" class="text-white">Casia (Rama negra)</option>
+                        <option style="background:black;" class="text-white">Cassia</option>
+                        <option style="background:black;" class="text-white">Castaño de Indias comun</option>
+                        <option style="background:black;" class="text-white">Casuarina</option>
+                        <option style="background:black;" class="text-white">Catalpa</option>
+                        <option style="background:black;" class="text-white">Catalpa</option>
+                        <option style="background:black;" class="text-white">Cedrela</option>
+                        <option style="background:black;" class="text-white">Cedro</option>
+                        <option style="background:black;" class="text-white">Cedro azulado</option>
+                        <option style="background:black;" class="text-white">Cedro blanco de California</option>
+                        <option style="background:black;" class="text-white">Cedro de San Juan</option>
+                        <option style="background:black;" class="text-white">Cedro del Atlas (Cedro plateado)</option>
+                        <option style="background:black;" class="text-white">Cedro del Himalaya</option>
+                        <option style="background:black;" class="text-white">Cedro del Himalaya variedad aurea</option>
+                        <option style="background:black;" class="text-white">Cedro del LA¬bano (Cedro de Salomon)</option>
+                        <option style="background:black;" class="text-white">Cedro misionero (Cedro colorado)</option>
+                        <option style="background:black;" class="text-white">Cefalotaxus</option>
+                        <option style="background:black;" class="text-white">Ceibo</option>
+                        <option style="background:black;" class="text-white">Ceibo</option>
+                        <option style="background:black;" class="text-white">Ceibo del monte</option>
+                        <option style="background:black;" class="text-white">Celtis tala</option>
+                        <option style="background:black;" class="text-white">Celtis tala</option>
+                        <option style="background:black;" class="text-white">Cerella</option>
+                        <option style="background:black;" class="text-white">Cerezo</option>
+                        <option style="background:black;" class="text-white">Chal Chal</option>
+                        <option style="background:black;" class="text-white">Chamaecyparis</option>
+                        <option style="background:black;" class="text-white">Cheflera</option>
+                        <option style="background:black;" class="text-white">Cica</option>
+                        <option style="background:black;" class="text-white">Cina cina</option>
+                        <option style="background:black;" class="text-white">Cinnamomun</option>
+                        <option style="background:black;" class="text-white">Cipres</option>
+                        <option style="background:black;" class="text-white">Cipres blanco</option>
+                        <option style="background:black;" class="text-white">Cipres fanebre (Lloron chino)</option>
+                        <option style="background:black;" class="text-white">Cipres funerario</option>
+                        <option style="background:black;" class="text-white">Cipres horizontal</option>
+                        <option style="background:black;" class="text-white">Cipres leylandi</option>
+                        <option style="background:black;" class="text-white">Cipres piramidal</option>
+                        <option style="background:black;" class="text-white">Cipres</option>
+                        <option style="background:black;" class="text-white">Cipres calvo</option>
+                        <option style="background:black;" class="text-white">Ciruelo</option>
+                        <option style="background:black;" class="text-white">Ciruelo de jardin</option>
+                        <option style="background:black;" class="text-white">Citricos</option>
+                        <option style="background:black;" class="text-white">Coculus</option>
+                        <option style="background:black;" class="text-white">Corona de cristo</option>
+                        <option style="background:black;" class="text-white">Coronillo</option>
+                        <option style="background:black;" class="text-white">Cotoneaster</option>
+                        <option style="background:black;" class="text-white">Cotoneaster</option>
+                        <option style="background:black;" class="text-white">Cotoneaster</option>
+                        <option style="background:black;" class="text-white">Crataegus</option>
+                        <option style="background:black;" class="text-white">Crataegus</option>
+                        <option style="background:black;" class="text-white">Crespon </option>
+                        <option style="background:black;" class="text-white">Criptomeria (Cedro del Japon)</option>
+                        <option style="background:black;" class="text-white">Curupa</option>
+                        <option style="background:black;" class="text-white">Dracena indivisa</option>
+                        <option style="background:black;" class="text-white">Dracena marginata</option>
+                        <option style="background:black;" class="text-white">dracaena</option>
+                        <option style="background:black;" class="text-white">Duranta</option>
+                        <option style="background:black;" class="text-white">Duranta variedad aurea</option>
+                        <option style="background:black;" class="text-white">Durazno</option>
+                        <option style="background:black;" class="text-white">El chañar</option>
+                        <option style="background:black;" class="text-white">Eleagno</option>
+                        <option style="background:black;" class="text-white">Eleagnus</option>
+                        <option style="background:black;" class="text-white">Encina</option>
+                        <option style="background:black;" class="text-white">Enebro comun</option>
+                        <option style="background:black;" class="text-white">Enterolobium</option>
+                        <option style="background:black;" class="text-white">Espina del bañado</option>
+                        <option style="background:black;" class="text-white">Espinillo (Aromo)</option>
+                        <option style="background:black;" class="text-white">Espino de fuego</option>
+                        <option style="background:black;" class="text-white">Espino de fuego</option>
+                        <option style="background:black;" class="text-white">Esterculea</option>
+                        <option style="background:black;" class="text-white">Estrella federal</option>
+                        <option style="background:black;" class="text-white">Eucalipto</option>
+                        <option style="background:black;" class="text-white">Eucalipto</option>
+                        <option style="background:black;" class="text-white">Eucalipto (Eucalipto comun)</option>
+                        <option style="background:black;" class="text-white">Eucalipto cinerea</option>
+                        <option style="background:black;" class="text-white">Eucalipto saligna</option>
+                        <option style="background:black;" class="text-white">Eucalipto sideroxylon</option>
+                        <option style="background:black;" class="text-white">Eucalipto tereticornis</option>
+                        <option style="background:black;" class="text-white">Euforbia</option>
+                        <option style="background:black;" class="text-white">Euphorbia</option>
+                        <option style="background:black;" class="text-white">Falso Alcanforero</option>
+                        <option style="background:black;" class="text-white">Falso alerce</option>
+                        <option style="background:black;" class="text-white">Falso cafeto</option>
+                        <option style="background:black;" class="text-white">Falso cipres de Lawson</option>
+                        <option style="background:black;" class="text-white">Falso Guayabo (Guayaba del Brasil)</option>
+                        <option style="background:black;" class="text-white">Fenix</option>
+                        <option style="background:black;" class="text-white">Fenix</option>
+                        <option style="background:black;" class="text-white">Fenix paludosa</option>
+                        <option style="background:black;" class="text-white">Ficus</option>
+                        <option style="background:black;" class="text-white">Ficus</option>
+                        <option style="background:black;" class="text-white">Ficus ali</option>
+                        <option
+                          >Ficus herrumbroso (Ficus oxidado o Higuera herrumbrosa)</option
+                        >
+                        <option style="background:black;" class="text-white">Ficus variegado</option>
+                        <option style="background:black;" class="text-white">Firmiana</option>
+                        <option style="background:black;" class="text-white">Fotinia</option>
+                        <option style="background:black;" class="text-white">Fotinia</option>
+                        <option style="background:black;" class="text-white">Fotinia</option>
+                        <option style="background:black;" class="text-white">Fresno</option>
+                        <option style="background:black;" class="text-white">Fresno (Fresno comun)</option>
+                        <option style="background:black;" class="text-white">Fresno americano</option>
+                        <option style="background:black;" class="text-white">Ginkgo</option>
+                        <option style="background:black;" class="text-white">Gomero</option>
+                        <option style="background:black;" class="text-white">Granado</option>
+                        <option style="background:black;" class="text-white">Grevillea</option>
+                        <option style="background:black;" class="text-white">Guabiyi</option>
+                        <option style="background:black;" class="text-white">Guaran amarillo</option>
+                        <option style="background:black;" class="text-white">Guayabo</option>
+                        <option style="background:black;" class="text-white">Guayaibi</option>
+                        <option style="background:black;" class="text-white">Hibiscus</option>
+                        <option style="background:black;" class="text-white">Higuera</option>
+                        <option style="background:black;" class="text-white">Higuera de Baha¬a</option>
+                        <option style="background:black;" class="text-white">Higueron</option>
+                        <option style="background:black;" class="text-white">IbirA pitA</option>
+                        <option style="background:black;" class="text-white">Ilex</option>
+                        <option style="background:black;" class="text-white">Inga</option>
+                        <option style="background:black;" class="text-white">Jazmin</option>
+                        <option style="background:black;" class="text-white">Jazmin del Paraguay</option>
+                        <option style="background:black;" class="text-white">Jazmin naranja</option>
+                        <option style="background:black;" class="text-white">Juglans</option>
+                        <option style="background:black;" class="text-white">Juniperus</option>
+                        <option style="background:black;" class="text-white">Juniperus</option>
+                        <option style="background:black;" class="text-white">Kauri de corteza lisa</option>
+                        <option style="background:black;" class="text-white">Lagunaria (Arbol pica-pica)</option>
+                        <option style="background:black;" class="text-white">Lapachillo</option>
+                        <option style="background:black;" class="text-white">Lapacho</option>
+                        <option style="background:black;" class="text-white">Lapacho amarillo</option>
+                        <option style="background:black;" class="text-white">Lapacho negro</option>
+                        <option style="background:black;" class="text-white">Lapacho rosado</option>
+                        <option style="background:black;" class="text-white">Laurel</option>
+                        <option style="background:black;" class="text-white">Laurel blanco</option>
+                        <option style="background:black;" class="text-white">Laurel cerezo</option>
+                        <option style="background:black;" class="text-white">Laurel de indias</option>
+                        <option style="background:black;" class="text-white">Laurel de jardin (Laurel de flor)</option>
+                        <option style="background:black;" class="text-white">Laurel del rio</option>
+                        <option style="background:black;" class="text-white">Laurus</option>
+                        <option style="background:black;" class="text-white">Libocedro (Calocedro)</option>
+                        <option style="background:black;" class="text-white">Libocedrus</option>
+                        <option style="background:black;" class="text-white">Ligustrina</option>
+                        <option style="background:black;" class="text-white">Ligustrina de California</option>
+                        <option style="background:black;" class="text-white">Ligustro</option>
+                        <option style="background:black;" class="text-white">Ligustro disciplinado (Ligustro variegado)</option>
+                        <option style="background:black;" class="text-white">Ligustrum</option>
+                        <option style="background:black;" class="text-white">Limonero</option>
+                        <option style="background:black;" class="text-white">Limpiatubos</option>
+                        <option style="background:black;" class="text-white">Liquidambar </option
+                        ><option style="background:black;" class="text-white">Livistona de China (Palmera china de abanico)</option>
+                        <option style="background:black;" class="text-white">Macrocarpa </option>
+                        <option style="background:black;" class="text-white">Magnolia</option>
+                        <option style="background:black;" class="text-white">Magnolia</option>
+                        <option style="background:black;" class="text-white">Malus</option>
+                        <option style="background:black;" class="text-white">Mandarino</option>
+                        <option style="background:black;" class="text-white">Mataojos</option>
+                        <option style="background:black;" class="text-white">Membrillero</option>
+                        <option style="background:black;" class="text-white">Mimosa (Aromo frances)</option>
+                        <option style="background:black;" class="text-white">Mirto</option>
+                        <option style="background:black;" class="text-white">Morera blanca</option>
+                        <option style="background:black;" class="text-white">Morera de papel (Moral de China)</option>
+                        <option style="background:black;" class="text-white">Morera negra</option>
+                        <option style="background:black;" class="text-white">Morera pendula</option>
+                        <option style="background:black;" class="text-white">Morus</option>
+                        <option style="background:black;" class="text-white">Naranjillo</option>
+                        <option style="background:black;" class="text-white">Naranjo amargo</option>
+                        <option style="background:black;" class="text-white">Naranjo de Luisana</option>
+                        <option style="background:black;" class="text-white">Naranjo dulce</option>
+                        <option style="background:black;" class="text-white">Nerium</option>
+                        <option style="background:black;" class="text-white">Nipero japones</option>
+                        <option style="background:black;" class="text-white">No Determinado</option>
+                        <option style="background:black;" class="text-white">Nogal americano</option>
+                        <option style="background:black;" class="text-white">Nogal criollo</option>
+                        <option style="background:black;" class="text-white">Nogal europeo (Nogal comun)</option>
+                        <option style="background:black;" class="text-white">Nolina</option>
+                        <option style="background:black;" class="text-white">Olea</option>
+                        <option style="background:black;" class="text-white">Olivo</option>
+                        <option style="background:black;" class="text-white">Olivo oloroso</option>
+                        <option style="background:black;" class="text-white">Olmo</option>
+                        <option style="background:black;" class="text-white">Olmo</option>
+                        <option style="background:black;" class="text-white">Olmo de montaña</option>
+                        <option style="background:black;" class="text-white">Olmo europeo</option>
+                        <option style="background:black;" class="text-white">Ombu</option>
+                        <option style="background:black;" class="text-white">Ombu</option>
+                        <option style="background:black;" class="text-white">PA¡tano de Oriente (PAtano oriental)</option>
+                        <option style="background:black;" class="text-white">Palma Bangalow (Palma Rey)</option>
+                        <option style="background:black;" class="text-white">Palma de california</option>
+                        <option style="background:black;" class="text-white">Palmera china</option>
+                        <option style="background:black;" class="text-white">Palmera del senegal</option>
+                        <option style="background:black;" class="text-white">Palmera enana</option>
+                        <option style="background:black;" class="text-white">Palmito</option>
+                        <option style="background:black;" class="text-white">Palo amarillo</option>
+                        <option style="background:black;" class="text-white">Palo amarillo</option>
+                        <option style="background:black;" class="text-white">Palo borracho</option>
+                        <option style="background:black;" class="text-white">Palo borracho blanco</option>
+                        <option style="background:black;" class="text-white">Palo borracho rosado</option>
+                        <option style="background:black;" class="text-white">Palo coca</option>
+                        <option style="background:black;" class="text-white">Palto</option>
+                        <option style="background:black;" class="text-white">Paraiso</option>
+                        <option style="background:black;" class="text-white">Paraiso umbraculifera</option>
+                        <option style="background:black;" class="text-white">Parasol de la china</option>
+                        <option style="background:black;" class="text-white">Pata de vaca (Pezuña de vaca)</option>
+                        <option style="background:black;" class="text-white">Paulonia (Arbol de la emperatriz)</option>
+                        <option style="background:black;" class="text-white">Pecan</option>
+                        <option style="background:black;" class="text-white">Peltophorum</option>
+                        <option style="background:black;" class="text-white">Peral comun</option>
+                        <option style="background:black;" class="text-white">Phyllanthus</option>
+                        <option style="background:black;" class="text-white">Picea</option>
+                        <option style="background:black;" class="text-white">Pindo</option>
+                        <option style="background:black;" class="text-white">Pino</option>
+                        <option style="background:black;" class="text-white">Pino</option>
+                        <option style="background:black;" class="text-white">Pino carrasco (Pino de Jerusalen)</option>
+                        <option style="background:black;" class="text-white">Pino de las canarias</option>
+                        <option style="background:black;" class="text-white">Pino de Siberia</option>
+                        <option style="background:black;" class="text-white">Pino del ParanA (Pino de Misiones o Pino de Brasil)</option>
+                        <option style="background:black;" class="text-white">Pino piñonero</option>
+                        <option style="background:black;" class="text-white">Pino rodeno</option>
+                        <option style="background:black;" class="text-white">PlAtano</option>
+                        <option style="background:black;" class="text-white">Plumerillo rojo</option>
+                        <option style="background:black;" class="text-white">Podocarpus</option>
+                        <option style="background:black;" class="text-white">Poinciana (Caesalpinia o Barba de chivo)</option>
+                        <option style="background:black;" class="text-white">Prosopis</option>
+                        <option style="background:black;" class="text-white">Prunus</option>
+                        <option style="background:black;" class="text-white">Quebracho colorado</option>
+                        <option style="background:black;" class="text-white">Quinoto</option>
+                        <option style="background:black;" class="text-white">Rafis (Palmerita china)</option>
+                        <option style="background:black;" class="text-white">Robinia</option>
+                        <option style="background:black;" class="text-white">Roble</option>
+                        <option style="background:black;" class="text-white">Roble americano</option>
+                        <option style="background:black;" class="text-white">Roble comun</option>
+                        <option style="background:black;" class="text-white">Roble palustre</option>
+                        <option style="background:black;" class="text-white">Roble sedoso (Grevillea)</option>
+                        <option style="background:black;" class="text-white">Robusta</option>
+                        <option style="background:black;" class="text-white">Rosa de China (Hibisco)</option>
+                        <option style="background:black;" class="text-white">Rosa de mayo</option>
+                        <option style="background:black;" class="text-white">Rosa de Siria</option>
+                        <option style="background:black;" class="text-white">Ruprechtia</option>
+                        <option style="background:black;" class="text-white">Rus</option>
+                        <option style="background:black;" class="text-white">Safora japonica</option>
+                        <option style="background:black;" class="text-white">Safora pandula</option>
+                        <option style="background:black;" class="text-white">Sambucus</option>
+                        <option style="background:black;" class="text-white">Sauce</option>
+                        <option style="background:black;" class="text-white">Sauce blanco</option>
+                        <option style="background:black;" class="text-white">Sauce blanco variedad tristis</option>
+                        <option style="background:black;" class="text-white">Sauce criollo</option>
+                        <option style="background:black;" class="text-white">Sauce electrico</option>
+                        <option style="background:black;" class="text-white">Sauce lloron</option>
+                        <option style="background:black;" class="text-white">Sauzgatillo</option>
+                        <option style="background:black;" class="text-white">Schinus</option>
+                        <option style="background:black;" class="text-white">Secuoya</option>
+                        <option style="background:black;" class="text-white">Sesbania</option>
+                        <option style="background:black;" class="text-white">Siempreverde</option>
+                        <option style="background:black;" class="text-white">Sota Caballo</option>
+                        <option style="background:black;" class="text-white">Tabaco ornamental</option>
+                        <option style="background:black;" class="text-white">Tabaquillo</option>
+                        <option style="background:black;" class="text-white">Taxodium</option>
+                        <option style="background:black;" class="text-white">Taxus</option>
+                        <option style="background:black;" class="text-white">Tejo chino</option>
+                        <option style="background:black;" class="text-white">Tilo</option>
+                        <option style="background:black;" class="text-white">Tilo</option>
+                        <option style="background:black;" class="text-white">Timba (Oreja de negro)</option>
+                        <option style="background:black;" class="text-white">Tipa blanca</option>
+                        <option style="background:black;" class="text-white">Trachycarpus</option>
+                        <option style="background:black;" class="text-white">Trichilia</option>
+                        <option style="background:black;" class="text-white">Tuja</option>
+                        <option style="background:black;" class="text-white">Tulipanero</option>
+                        <option style="background:black;" class="text-white">Tuya</option>
+                        <option style="background:black;" class="text-white">Tuya oriental</option>
+                        <option style="background:black;" class="text-white">Viburnum</option>
+                        <option style="background:black;" class="text-white">Viburnum dulce</option>
+                        <option style="background:black;" class="text-white">Virara (Virara crespo)</option>
+                        <option style="background:black;" class="text-white">Visco (Viscote Arca)</option>
+                        <option style="background:black;" class="text-white">Washingtonia</option>
+                        <option style="background:black;" class="text-white">washingtonia</option>
+                        <option style="background:black;" class="text-white">Washingtonia (Palmera)</option>
+                        <option style="background:black;" class="text-white">Yuca</option>
+
+
+
+                  </select>
+
+                 
+
+
+
+
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="numeroDeArbol">Número de Árbol *</label>
+                  <input value="1" required type="number" id="numeroDeArbol" name="numeroDeArbol" class="form-control">
+                </div>
+
+                  <div class="col-md-6">
+                  <label class="text-white" for="distanciaEntrePlantas">Distancia entre plantas (cm)</label>
+                  <input value="0" type="number" id="distanciaEntrePlantas" name="distanciaEntrePlantas" class="form-control">
+                </div>
+                
+                
+                
+
+              </div>
+
+
+              <div class="row form-group">
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="calle">Distancia al muro (cm)</label>
+                  <input value="0" type="number" id="distanciaAlMuro" name="distanciaAlMuro" class="form-control">
+                </div>
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="calle">Diametro (cm)</label>
+                  <input value="0" type="number" id="diametro" name="diametro" class="form-control">
+                </div>
+                
+                
+                
+
+              </div>
+
+
+
+              
+              <div class="row form-group">
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="altura">Altura del árbol (cm)</label>
+                  <input value="0" type="number" id="altura" name="altura" class="form-control">
+                </div>
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="cordon">Distancia al cordón (cm)</label>
+                  <input value="0" type="number" id="cordon" name="cordon" class="form-control">
+                </div>
+                
+                
+                
+
+              </div>
+
+
+
+              <div class="row form-group">
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-white" for="calle">Circunferencia del árbol (cm)</label>
+                  <input value="0" type="number" id="circunferencia" name="circunferencia" class="form-control">
+                </div>
+
+            
+
+              </div>
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="subject">Cazuela</label> 
+                 
+
+                  <select name="cazuela" class="form-control">
+
+                
+                    <option selected disabled value="" style="background:black;" class="text-white">Cazuela:</option>
+                  <option style="background:black;" class="text-white">SI</option>
+
+                  <option style="background:black;" class="text-white">NO</option>
+
+
+
+                  </select>
+
+
+                </div>
+              </div>
+
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="subject">Daño de raices</label> 
+                 
+
+                  <select name="raices" class="form-control">
+
+                
+                  <option selected disabled value="NORMAL" style="background:black;" class="text-white">Normal</option>
+                  <option style="background:black;" class="text-white">20%</option>
+                  <option style="background:black;" class="text-white">40%</option>
+                  <option style="background:black;" class="text-white">60%</option>
+                  <option style="background:black;" class="text-white">80%</option>
+                  <option style="background:black;" class="text-white">100%</option>
+
+                  
+
+
+
+                  </select>
+
+
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="superficieAfectada">Superficie afectada</label> 
+                 
+
+                  <select name="superficieAfectada" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">En metros cuadrados:</option>
+                  <option style="background:black;" class="text-white">1</option>
+                  <option style="background:black;" class="text-white">2</option>
+                  <option style="background:black;" class="text-white">4</option>
+                  <option style="background:black;" class="text-white">8</option>
+                  <option style="background:black;" class="text-white">10</option>
+
+                  
+
+
+
+                  </select>
+
+
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="afecto">Afectó</label> 
+                 
+
+                  <select name="afecto" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Ha afectado:</option>
+                  <option style="background:black;" class="text-white">Caños</option>
+                  <option style="background:black;" class="text-white">Desagües</option>
+                  <option style="background:black;" class="text-white">Paredes</option>
+                  <option style="background:black;" class="text-white">Piso</option>
+                  <option style="background:black;" class="text-white">Otro</option>
+                  <option style="background:black;" class="text-white">Varias</option>
+
+                  
+
+
+
+                  </select>
+
+
+                </div>
+              </div>
+
+
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="estadoSanitario">Estado sanitario</label> 
+                 
+
+                  <select name="estadoSanitario" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Estado sanitario:</option>
+                  <option style="background:black;" class="text-white">S</option>
+                  <option style="background:black;" class="text-white">D</option>
+                  <option style="background:black;" class="text-white">M</option>
+              
+
+
+
+                  </select>
+
+
+                </div>
+
+
+                <div class="col-md-12">
+                  <label class="text-white" for="inclinacion">Inclinación</label> 
+                 
+
+                  <select name="inclinacion" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">inclinación:</option>
+                  <option style="background:black;" class="text-white">NO</option>
+                  <option style="background:black;" class="text-white">LI</option>
+                  <option style="background:black;" class="text-white">MI</option>
+              
+
+                  </select>
+
+
+                </div>
+
+
+
+
+              </div>
+
+
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="cables">Cables</label> 
+                 
+
+                  <select name="cables" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Cables:</option>
+                  <option style="background:black;" class="text-white">PD</option>
+                  <option style="background:black;" class="text-white">PE</option>
+                  <option style="background:black;" class="text-white">IA</option>
+              
+
+
+
+                  </select>
+
+
+                </div>
+
+
+                <div class="col-md-12">
+                  <label class="text-white" for="luminaria">Luminaria</label> 
+                 
+
+                  <select name="luminaria" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Luminaria:</option>
+                  <option style="background:black;" class="text-white">PD</option>
+                  <option style="background:black;" class="text-white">PE</option>
+                  <option style="background:black;" class="text-white">IA</option>
+              
+
+                  </select>
+
+
+                </div>
+
+
+
+
+              </div>
+
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="ahuecamiento">Ahuecamiento</label> 
+                 
+
+                  <select name="ahuecamiento" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Ahuecamiento:</option>
+                  <option style="background:black;" class="text-white">SI</option>
+                  <option style="background:black;" class="text-white">NO</option>
+               
+              
+
+
+
+                  </select>
+
+
+                </div>
+
+
+                <div class="col-md-12">
+                  <label class="text-white" for="subject">Daños</label> 
+                 
+
+                  <select name="danios" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Daños:</option>
+                  <option style="background:black;" class="text-white">SI</option>
+                  <option style="background:black;" class="text-white">NO</option>
+                  
+              
+
+                  </select>
+
+
+                </div>
+
+
+
+
+              </div>
+
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-white" for="subject">Daños a veredas</label> 
+                 
+
+                  <select name="daniosVereda" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Daños a veredas:</option>
+                  <option style="background:black;" class="text-white">I</option>
+                  <option style="background:black;" class="text-white">L</option>
+                  <option style="background:black;" class="text-white">NO</option>
+               
+              
+
+
+
+                  </select>
+
+
+                </div>
+
+
+                <div class="col-md-12">
+                  <label class="text-white" for="subject">Podas</label> 
+                 
+
+                  <select name="podas" class="form-control">
+
+                
+                  <option selected disabled value="" style="background:black;" class="text-white">Podas:</option>
+                  <option style="background:black;" class="text-white">NO</option>
+                  <option style="background:black;" class="text-white">L</option>
+                  <option style="background:black;" class="text-white">S</option>
+                  
+              
+
+                  </select>
+
+
+                </div>
+
+
+
+
+              </div>
+
+
+
+                   {{ formset.management_form }}
+                    {% for form in formset %}
+
+                    {{ form.as_p }}
+                    
+                    {% endfor %}
+
+              <!--
+              <div class="form-group">
+                <div class="custom-file">
+                  <input    name="image[]" type="file" class="custom-file-input" id="image"   accept="image/*"  required >
+                  <label  class="custom-file-label" for="image">Elija una imagen jpg - png - jpeg - gif</label>
+                  <div class="invalid-feedback">Elija un formato valido</div>
+                </div>
+              </div>
+            -->
+
+            <!--Sacar fotos para la galeria-->
+          
+
+        
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  
+                 
+
+                  <label class="text-white" for="comentario">Comentario</label>
+                  <textarea class="form-control" id="comentario" rows="3" name="comentario"></textarea>
+                </div>
+
+
+              </div>
+
+
+            
+
+              
+
+
+
+              
+
+              <input type="hidden" id="lat" name="lat" value="">
+              <input type="hidden" id="lon" name="lon" value="">
+
+          
+
+      
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Enviar datos" class="btn btn-primary py-2 px-4 text-white">
+                </div>
+              </div>
+
+
+         
+
+
+            </form>
+          </div>
+
+          <!--
+          <div class="col-md-12">
+                
+            <label class="text-white" for="comentario">Aquí puede sacar fotos en caso que no las tenga.</label>
+            <p id="errorTxt"></p>
+            <div>
+                <video id="theVideo" controls autoplay></video>
+                <canvas id="theCanvas"></canvas>
+            </div>
+            <button class="btn btn-primary py-2 px-4 text-white" id="btnCapture">Sacar foto</button>
+            <button class="btn btn-primary py-2 px-4 text-white" id="btnDownloadImage">Descargar</button>
+
+
+          </div>
+
+        -->
+
+
+       
+
+        
+
+
+        <div class="col-md-12">
+
+          <a  class="text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            En caso que no las tengas en la galeria aquí puedes tomar tus fotos
+          </a>
+
+          <div class="collapse" id="collapseExample">
+            
+
+
+              
+              <p id="errorTxt"></p>
+              <div>
+                  <video id="theVideo" controls autoplay muted="muted" ></video>
+                  <canvas id="theCanvas"></canvas>
+              </div>
+              <button class="btn btn-primary py-2 px-4 text-white" id="btnCapture">Sacar foto</button>
+              <button class="btn btn-primary py-2 px-4 text-white" id="btnDownloadImage">Descargar</button>
+
+
+            
+          </div>
+
+        </div>
+
+
+        
+          <!-- GeoLocalización para el censo-->
+            <script>
+
+              var geo_options = {
+                enableHighAccuracy: true,
+                maximumAge        : 30000,
+                timeout           : 27000
+              };
+
+            function pos_ok (posicion) {
+              console.log(posicion);
+              var latitud  = posicion.coords.latitude;
+              var longitud = posicion.coords.longitude;
+              document.getElementById('lat').value = latitud;
+              document.getElementById('lon').value = longitud;
+            }
+
+            function pos_fallo () {
+              console.log('Error al geolocalizar.');
+            }
+
+            if(!navigator.geolocation) {
+              console.log('Geolocalización no disponible.');
+            } else {
+              console.log('Geolocalizando...');
+              //navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo, geo_options);
+              navigator.geolocation.watchPosition(pos_ok, pos_fallo, geo_options);
+            }
+
+
+
+            </script>
+
+
+
+         
+
+          
+         <!--
+          <div class="col-lg-3 ml-auto">
+            <div class="mb-3">
+              <p class="mb-0 font-weight-bold text-white">Dirección</p>
+              <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+        
+              <p class="mb-0 font-weight-bold text-white">Phone</p>
+              <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
+        
+              <p class="mb-0 font-weight-bold text-white">Email Address</p>
+              <p class="mb-0"><a href="#">youremail@domain.com</a></p>
+        
+            </div>
+          
+          
+        
+
+
+
+        </div>
+      </div>
+    </div>
+  -->
+    
+ {% endblock %}
+
+
+
+

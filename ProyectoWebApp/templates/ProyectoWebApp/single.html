@@ -1,0 +1,61 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Galeria &mdash; Arbolado Urbano UNLa</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="site-section"  data-aos="fade">
+      <div class="container-fluid">
+
+        <div class="row justify-content-center">
+
+          <div class="col-md-7">
+            <div class="row mb-5">
+              <div class="col-12 ">
+                <h2 class="site-section-heading text-center">Árboles censados</h2>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row" id="lightgallery">
+
+
+          {% for imagen in imagenes %}
+
+         
+
+          <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="{{imagen.image.url}}"  
+          data-sub-html="{{imagen.arbol}}"
+            >
+
+            <a href="#"> 
+              
+              <p>{{imagen.arbol.especie}}  </p>
+              
+              <p>Comentario: {{imagen.arbol.comentario}}</p>
+              
+              <img src="{{imagen.image.url}}" alt="Imagen" class="img-fluid">
+
+              <p>Numero árbol:{{imagen.arbol.numeroArbol}}  </p>
+              
+              <p>Cazuela: {{imagen.arbol.cazuela}}</p>
+            
+            </a>
+          </div>
+          
+
+         {% endfor %}
+        
+        
+
+        </div>
+      </div>
+    </div>
+    {% endblock %}

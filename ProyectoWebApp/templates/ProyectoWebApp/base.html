@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% load static %}
+
+
+
+
+
+  {% block title %}
+
+  {% endblock %}
+
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/fonts/icomoon/style.css' %}">
+
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/jquery-ui.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/owl.theme.default.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/lightgallery.min.css' %}">    
+
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/bootstrap-datepicker.css' %}">
+
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/fonts/flaticon/font/flaticon.css' %}">
+
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/swiper.css' %}">
+
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/aos.css' %}">
+
+  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/style.css' %}">
+
+
+  <!-- MAP BOX -PROBANDOO-->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+
+  <!-- Chart.js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+
+
+  
+ 
+
+  {% block extra_css %}
+  {% endblock %}
+
+  
+
+
+
+ 
+
+
+</head>
+<body>
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+
+
+
+    <header class="site-navbar py-3" role="banner">
+
+      <div class="container-fluid">
+        <div class="row align-items-center">
+
+          <div class="col-6 col-xl-2" data-aos="fade-down">
+            <h1 class="mb-0"><a href="{% url 'Inicio' %}" class="text-white h2 mb-0">UNLa</a></h1>
+          </div>
+          <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
+            <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
+
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+
+                <li class=" {%if request.path == '/' %}active{% endif%}"><a href="{% url 'Inicio' %}">Inicio</a></li>               
+                <li class=" {%if request.path == '/galeria' %}active{% endif%}" ><a href="{% url 'Galeria' %}">Censados</a></li>
+                <li class=" {%if request.path == '/servicios' %}active{% endif%}" ><a href="{% url 'ServicioMapa' %}">Servicios</a></li>
+                <li class=" {%if request.path == '/nosotros' %}active{% endif%}"><a href="{% url 'Estadisticas' %}">Estadisticas</a></li>
+                <li class=" {%if request.path == '/contacto' %}active{% endif%}"><a href="{% url 'Contacto' %}">Contacto</a></li>
+                <li class=" {%if request.path == '/nuevoArbol' %}active{% endif%}"><a href="{% url 'NuevoArbol' %}">Cargar Árbol</a></li>
+                <li class="has-children">
+                  <a href="#">Usuario: {{request.user.username}}</a>
+                  <ul class="dropdown">
+                    <li><a href="{% url 'Login' %}">Iniciar</a></li>
+                    <li><a href="{% url 'Register' %}">Registrar</a></li>
+                    <li><a href="{% url 'Logout' %}">Salir</a></li>
+                   
+                    
+                  </ul>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-6 col-xl-2 text-right" data-aos="fade-down">
+            <div class="d-none d-xl-inline-block">
+              <ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+                <li>
+                  <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                </li>
+                <li>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-youtube-play"></span></a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+          </div>
+
+        </div>
+      </div>
+      
+    </header>
+
+    <!-- esto cambiaraaa-->
+    {% block content %}
+
+
+        
+
+    {% endblock %}
+
+
+
+    <!-- Script dentro del body, luego mejorarlo-->
+    <script type="text/javascript">
+      var videoWidth = 320;
+      var videoHeight = 240;
+      var videoTag = document.getElementById('theVideo');
+      var canvasTag = document.getElementById('theCanvas');
+      var btnCapture = document.getElementById("btnCapture");
+      var btnDownloadImage = document.getElementById("btnDownloadImage");
+      videoTag.setAttribute('width', videoWidth);
+      videoTag.setAttribute('height', videoHeight);
+      canvasTag.setAttribute('width', videoWidth);
+      canvasTag.setAttribute('height', videoHeight);
+      window.onload = () => {
+          navigator.mediaDevices.getUserMedia({
+              audio: true,
+              video: {
+                  width: videoWidth,
+                  height: videoHeight
+              }
+          }).then(stream => {
+              videoTag.srcObject = stream;
+          }).catch(e => {
+              document.getElementById('errorTxt').innerHTML = 'ERROR: ' + e.toString();
+          });
+          var canvasContext = canvasTag.getContext('2d');
+          btnCapture.addEventListener("click", () => {
+              canvasContext.drawImage(videoTag, 0, 0, videoWidth, videoHeight);
+          });
+          btnDownloadImage.addEventListener("click", () => {
+              var link = document.createElement('a');
+              link.download = 'capturedImage.png';
+              link.href = canvasTag.toDataURL();
+              link.click();
+          });
+      };
+      </script>
+
+
+
+   
+    <div class="footer py-4">
+      <div class="container-fluid text-center">
+        <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Desarrollo Universidad Nacional de Lanús <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://www.unla.edu.ar" target="_blank" >UNLa</a>
+          <br>
+          Copyright &copy;<script data-cfasync="false" src="{% static 'ProyectoWebApp/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+      </div>
+    </div>
+
+    
+
+    
+    
+  </div>
+
+  <script src="{% static 'ProyectoWebApp/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/jquery-ui.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/popper.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/swiper.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/aos.js' %}"></script>
+
+  <script src="{% static 'ProyectoWebApp/js/picturefill.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/lightgallery-all.min.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/jquery.mousewheel.min.js' %}"></script>
+
+  <script src="{% static 'ProyectoWebApp/js/main.js' %}"></script>
+  <script src="{% static 'ProyectoWebApp/js/mootools.js' %}"></script>
+
+  <!--Cloudinary-->
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+  <script src="{% static 'ProyectoWebApp/js/servicio-imagen.js' %}"></script>
+
+  
+  
+  <script>
+    $(document).ready(function(){
+      $('#lightgallery').lightGallery();
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</body>
+</html>

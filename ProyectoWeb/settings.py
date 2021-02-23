@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'oc94l!4si#aa$@4pb6_g7emn=10)tsk1rysors^8w8nim&ollu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False #herokuuuuuuuuuuuuu
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] #herokuuuuuuuuuuuuu
 
 
 # Application definition
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ProyectoWeb.urls'
@@ -83,15 +85,25 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 #}
 
 
+#DATABASES = {
+   #     'default': {
+  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+ #       'NAME': 'arbolado',
+ #       'USER': 'postgres',
+ #       'PASSWORD': 'aula',
+ #       'HOST': '127.0.0.1',
+ #       'DATABASE_PORT': '5432',
+ #   }
+#}
+
+
+#herokuuuuuuuuuuuuu
+import dj_database_url
+from decouple import config
 DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'arbolado',
-        'USER': 'postgres',
-        'PASSWORD': 'aula',
-        'HOST': '127.0.0.1',
-        'DATABASE_PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -131,6 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 #para guardar las fotos
@@ -151,3 +164,5 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -87,8 +87,8 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 #}
 
 
-#postgres://ekszvxgavnxbfd:5e2345aaf8f950f444ff9eb7139104495bc2d57f6dc0a85783d039f1d1111c0a@ec2-52-70-67-123.compute-1.amazonaws.com:5432/d3p0d4m36bult3
 
+#Heroku, funcionó bien:) CAMBIARLO EN CASO DE OTRO DEPLOY
 DATABASES = {
       'default': {
        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -103,7 +103,7 @@ DATABASES = {
 
 
 
-#herokuuuuuuuuuuuuu
+#herokuuuuuuuuuuuuu NO FUNCIONO
 #import dj_database_url
 #from decouple import config
 #DATABASES = {

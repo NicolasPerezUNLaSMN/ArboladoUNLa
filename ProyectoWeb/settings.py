@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'oc94l!4si#aa$@4pb6_g7emn=10)tsk1rysors^8w8nim&ollu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #herokuuuuuuuuuuuuu
+DEBUG = True #herokuuuuuuuuuuuuu
 
-ALLOWED_HOSTS = ['*'] #herokuuuuuuuuuuuuu
+ALLOWED_HOSTS = [] #herokuuuuuuuuuuuuu
 
 
 # Application definition
@@ -87,26 +87,26 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 #}
 
 
-#DATABASES = {
-   #     'default': {
-  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
- #       'NAME': 'arbolado',
- #       'USER': 'postgres',
- #       'PASSWORD': 'aula',
- #       'HOST': '127.0.0.1',
- #       'DATABASE_PORT': '5432',
- #   }
-#}
+DATABASES = {
+       'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'arbolado',
+        'USER': 'postgres',
+        'PASSWORD': 'aula',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT': '5432',
+    }
+}
 
 
 #herokuuuuuuuuuuuuu
-import dj_database_url
-from decouple import config
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+#import dj_database_url
+#from decouple import config
+#DATABASES = {
+ #   'default': dj_database_url.config(
+ #       default=config('DATABASE_URL')
+ #   )
+#}
 
 
 # Password validation
@@ -145,13 +145,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #LES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 

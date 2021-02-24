@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'oc94l!4si#aa$@4pb6_g7emn=10)tsk1rysors^8w8nim&ollu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #herokuuuuuuuuuuuuu
+DEBUG = False  #herokuuuuuuuuuuuuu
 
 ALLOWED_HOSTS = ['arboladounla.herokuapp.com', '127.0.0.1'] #herokuuuuuuuuuuuuu
 
@@ -87,25 +87,29 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 #}
 
 
+#postgres://ekszvxgavnxbfd:5e2345aaf8f950f444ff9eb7139104495bc2d57f6dc0a85783d039f1d1111c0a@ec2-52-70-67-123.compute-1.amazonaws.com:5432/d3p0d4m36bult3
+
 DATABASES = {
-       'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'arbolado',
-        'USER': 'postgres',
-        'PASSWORD': 'aula',
-        'HOST': '127.0.0.1',
-        'DATABASE_PORT': '5432',
-    }
+      'default': {
+       #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'd3p0d4m36bult3',
+        'USER': 'ekszvxgavnxbfd',
+       'PASSWORD': '5e2345aaf8f950f444ff9eb7139104495bc2d57f6dc0a85783d039f1d1111c0a',
+       'HOST': 'ec2-52-70-67-123.compute-1.amazonaws.com',
+       'DATABASE_PORT': '5432',
+   }
 }
+
 
 
 #herokuuuuuuuuuuuuu
 #import dj_database_url
 #from decouple import config
 #DATABASES = {
- #   'default': dj_database_url.config(
- #       default=config('DATABASE_URL')
- #   )
+  #  'default': dj_database_url.config(
+  #      default=config('DATABASE_URL')
+   # )
 #}
 
 

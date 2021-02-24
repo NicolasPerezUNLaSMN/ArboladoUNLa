@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'oc94l!4si#aa$@4pb6_g7emn=10)tsk1rysors^8w8nim&ollu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #herokuuuuuuuuuuuuu
+DEBUG = False #herokuuuuuuuuuuuuu
 
-ALLOWED_HOSTS = ['.herokuapp.com'] #herokuuuuuuuuuuuuu
+ALLOWED_HOSTS = ['*'] #herokuuuuuuuuuuuuu
 
 
 # Application definition
@@ -152,6 +152,7 @@ STATIC_URL = '/static/'
 
 #LES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 
 

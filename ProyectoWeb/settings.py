@@ -27,7 +27,7 @@ SECRET_KEY = 'oc94l!4si#aa$@4pb6_g7emn=10)tsk1rysors^8w8nim&ollu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #herokuuuuuuuuuuuuu
 
-ALLOWED_HOSTS = [] #herokuuuuuuuuuuuuu
+ALLOWED_HOSTS = ['arboladounla.herokuapp.com', '127.0.0.1'] #herokuuuuuuuuuuuuu
 
 
 # Application definition
@@ -147,6 +147,7 @@ USE_TZ = True
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

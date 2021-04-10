@@ -79,24 +79,24 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
     if (enumerables) enumerables = ['hasOwnProperty', 'valueOf', 'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString', 'constructor'];
     
     Function.prototype.overloadSetter = function(usePlural){
-        var self = this;
+        var arbol = this;
         return function(a, b){
             if (a == null) return this;
             if (usePlural || typeof a != 'string'){
-                for (var k in a) self.call(this, k, a[k]);
+                for (var k in a) arbol.call(this, k, a[k]);
                 if (enumerables) for (var i = enumerables.length; i--;){
                     k = enumerables[i];
-                    if (a.hasOwnProperty(k)) self.call(this, k, a[k]);
+                    if (a.hasOwnProperty(k)) arbol.call(this, k, a[k]);
                 }
             } else {
-                self.call(this, a, b);
+                arbol.call(this, a, b);
             }
             return this;
         };
     };
     
     Function.prototype.overloadGetter = function(usePlural){
-        var self = this;
+        var arbol = this;
         return function(a){
             var args, result;
             if (typeof a != 'string') args = a;
@@ -104,9 +104,9 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
             else if (usePlural) args = [a];
             if (args){
                 result = {};
-                for (var i = 0; i < args.length; i++) result[args[i]] = self.call(this, args[i]);
+                for (var i = 0; i < args.length; i++) result[args[i]] = arbol.call(this, args[i]);
             } else {
-                result = self.call(this, a);
+                result = arbol.call(this, a);
             }
             return result;
         };
@@ -892,19 +892,19 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
     
         /*<!ES5-bind>*/
         bind: function(that){
-            var self = this,
+            var arbol = this,
                 args = arguments.length > 1 ? Array.slice(arguments, 1) : null,
                 F = function(){};
     
             var bound = function(){
                 var context = that, length = arguments.length;
                 if (this instanceof bound){
-                    F.prototype = self.prototype;
+                    F.prototype = arbol.prototype;
                     context = new F;
                 }
                 var result = (!args && !length)
-                    ? self.call(context)
-                    : self.apply(context, args && length ? args.concat(Array.slice(arguments)) : args || arguments);
+                    ? arbol.call(context)
+                    : arbol.apply(context, args && length ? args.concat(Array.slice(arguments)) : args || arguments);
                 return context == that ? result : context;
             };
             return bound;
@@ -912,10 +912,10 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
         /*</!ES5-bind>*/
     
         pass: function(args, bind){
-            var self = this;
+            var arbol = this;
             if (args != null) args = Array.from(args);
             return function(){
-                return self.apply(bind, args || arguments);
+                return arbol.apply(bind, args || arguments);
             };
         },
     
@@ -936,14 +936,14 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
     Function.implement({
     
         create: function(options){
-            var self = this;
+            var arbol = this;
             options = options || {};
             return function(event){
                 var args = options.arguments;
                 args = (args != null) ? Array.from(args) : Array.slice(arguments, (options.event) ? 1 : 0);
                 if (options.event) args = [event || window.event].extend(args);
                 var returns = function(){
-                    return self.apply(options.bind || null, args);
+                    return arbol.apply(options.bind || null, args);
                 };
                 if (options.delay) return setTimeout(returns, options.delay);
                 if (options.periodical) return setInterval(returns, options.periodical);
@@ -953,18 +953,18 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
         },
     
         bind: function(bind, args){
-            var self = this;
+            var arbol = this;
             if (args != null) args = Array.from(args);
             return function(){
-                return self.apply(bind, args || arguments);
+                return arbol.apply(bind, args || arguments);
             };
         },
     
         bindWithEvent: function(bind, args){
-            var self = this;
+            var arbol = this;
             if (args != null) args = Array.from(args);
             return function(event){
-                return self.apply(bind, (args == null) ? arguments : [event].concat(args));
+                return arbol.apply(bind, (args == null) ? arguments : [event].concat(args));
             };
         },
     
@@ -1635,7 +1635,7 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
         return object;
     };
     
-    var wrap = function(self, key, method){
+    var wrap = function(arbol, key, method){
         if (method.$origin) method = method.$origin;
         var wrapper = function(){
             if (method.$protected && this.$caller == null) throw new Error('The method "' + key + '" cannot be called.');
@@ -1644,7 +1644,7 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
             var result = method.apply(this, arguments);
             this.$caller = current; this.caller = caller;
             return result;
-        }.extend({$owner: self, $origin: method, $name: key});
+        }.extend({$owner: arbol, $origin: method, $name: key});
         return wrapper;
     };
     
@@ -3893,9 +3893,9 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
     
         addListener: function(type, fn){
             if (type == 'unload'){
-                var old = fn, self = this;
+                var old = fn, arbol = this;
                 fn = function(){
-                    self.removeListener('unload', fn);
+                    arbol.removeListener('unload', fn);
                     old();
                 };
             } else {
@@ -4344,7 +4344,7 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
             var realType = type,
                 custom = Element.Events[type],
                 condition = fn,
-                self = this;
+                arbol = this;
             if (custom){
                 if (custom.onAdd) custom.onAdd.call(this, fn, type);
                 if (custom.condition){
@@ -4356,14 +4356,14 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
                 if (custom.base) realType = Function.from(custom.base).call(this, type);
             }
             var defn = function(){
-                return fn.call(self);
+                return fn.call(arbol);
             };
             var nativeEvent = Element.NativeEvents[realType];
             if (nativeEvent){
                 if (nativeEvent == 2){
                     defn = function(event){
-                        event = new DOMEvent(event, self.getWindow());
-                        if (condition.call(self, event) === false) event.stop();
+                        event = new DOMEvent(event, arbol.getWindow());
+                        if (condition.call(arbol, event) === false) event.stop();
                     };
                 }
                 this.addListener(realType, defn, arguments[2]);
@@ -4526,8 +4526,8 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
     
     Element.NativeEvents.focusin = Element.NativeEvents.focusout = 2;
     
-    var bubbleUp = function(self, match, fn, event, target){
-        while (target && target != self){
+    var bubbleUp = function(arbol, match, fn, event, target){
+        while (target && target != arbol){
             if (match(target, event)) return fn.call(target, event, target);
             target = document.id(target.parentNode);
         }
@@ -4558,18 +4558,18 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
     
             base: 'focusin',
     
-            remove: function(self, uid){
-                var list = self.retrieve(_key + type + 'listeners', {})[uid];
+            remove: function(arbol, uid){
+                var list = arbol.retrieve(_key + type + 'listeners', {})[uid];
                 if (list && list.forms) for (var i = list.forms.length; i--;){
                     list.forms[i].removeEvent(type, list.fns[i]);
                 }
             },
     
-            listen: function(self, match, fn, event, target, uid){
+            listen: function(arbol, match, fn, event, target, uid){
                 var form = (target.get('tag') == 'form') ? target : event.target.getParent('form');
                 if (!form) return;
     
-                var listeners = self.retrieve(_key + type + 'listeners', {}),
+                var listeners = arbol.retrieve(_key + type + 'listeners', {}),
                     listener = listeners[uid] || {forms: [], fns: []},
                     forms = listener.forms, fns = listener.fns;
     
@@ -4577,13 +4577,13 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
                 forms.push(form);
     
                 var _fn = function(event){
-                    bubbleUp(self, match, fn, event, target);
+                    bubbleUp(arbol, match, fn, event, target);
                 };
                 form.addEvent(type, _fn);
                 fns.push(_fn);
     
                 listeners[uid] = listener;
-                self.store(_key + type + 'listeners', listeners);
+                arbol.store(_key + type + 'listeners', listeners);
             }
         };
     };
@@ -4591,12 +4591,12 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
     var inputObserver = function(type){
         return {
             base: 'focusin',
-            listen: function(self, match, fn, event, target){
+            listen: function(arbol, match, fn, event, target){
                 var events = {blur: function(){
                     this.removeEvents(events);
                 }};
                 events[type] = function(event){
-                    bubbleUp(self, match, fn, event, target);
+                    bubbleUp(arbol, match, fn, event, target);
                 };
                 event.target.addEvents(events);
             }
@@ -4652,13 +4652,13 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
                 };
             }
     
-            var self = this, uid = String.uniqueID();
+            var arbol = this, uid = String.uniqueID();
             var delegator = _map.listen ? function(event, target){
                 if (!target && event && event.target) target = event.target;
-                if (target) _map.listen(self, match, fn, event, target, uid);
+                if (target) _map.listen(arbol, match, fn, event, target, uid);
             } : function(event, target){
                 if (!target && event && event.target) target = event.target;
-                if (target) bubbleUp(self, match, fn, event, target);
+                if (target) bubbleUp(arbol, match, fn, event, target);
             };
     
             if (!stored) stored = {};
@@ -6389,12 +6389,12 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
             var params = options.params, vars = options.vars, callBacks = options.callBacks;
             var properties = Object.append({height: options.height, width: options.width}, options.properties);
     
-            var self = this;
+            var arbol = this;
     
             for (var callBack in callBacks){
                 Swiff.CallBacks[this.instance][callBack] = (function(option){
                     return function(){
-                        return option.apply(self.object, arguments);
+                        return option.apply(arbol.object, arguments);
                     };
                 })(callBacks[callBack]);
                 vars[callBack] = 'Swiff.CallBacks.' + this.instance + '.' + callBack;

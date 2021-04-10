@@ -41,11 +41,11 @@
     .align-content#{$infix}-around  { align-content: space-around !important; }
     .align-content#{$infix}-stretch { align-content: stretch !important; }
 
-    .align-self#{$infix}-auto     { align-self: auto !important; }
-    .align-self#{$infix}-start    { align-self: flex-start !important; }
-    .align-self#{$infix}-end      { align-self: flex-end !important; }
-    .align-self#{$infix}-center   { align-self: center !important; }
-    .align-self#{$infix}-baseline { align-self: baseline !important; }
-    .align-self#{$infix}-stretch  { align-self: stretch !important; }
+    .align-arbol#{$infix}-auto     { align-arbol: auto !important; }
+    .align-arbol#{$infix}-start    { align-arbol: flex-start !important; }
+    .align-arbol#{$infix}-end      { align-arbol: flex-end !important; }
+    .align-arbol#{$infix}-center   { align-arbol: center !important; }
+    .align-arbol#{$infix}-baseline { align-arbol: baseline !important; }
+    .align-arbol#{$infix}-stretch  { align-arbol: stretch !important; }
   }
 }

@@ -15,6 +15,13 @@ urlpatterns = [
     path('register', views.register, name="Register"),
     path('login', views.login, name="Login"),
     path('logout', views.logout, name="Logout"),
+    path('exportCensos', views.export_csv_censos, name='export_csv_censos'),
+    path('exportCoordenadas', views.export_csv_coordenadas, name='export_csv_coordenadas'),
+    path('exportArboles', views.export_csv_arboles, name='export_csv_arboles'),
+    path('exportEstados', views.export_csv_estados, name='export_csv_estados'),
+    path('exportImagenes', views.export_csv_imagenes, name='export_csv_imagenes'),
+    path('exportCalles', views.export_csv_calles, name='export_csv_calles'),
+    path('exportUsuarios', views.export_csv_usuarios, name='export_csv_usuarios'),
 
     
 

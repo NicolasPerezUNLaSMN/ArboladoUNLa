@@ -17,6 +17,138 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 
+import csv
+from django.http import HttpResponse
+
+
+
+
+
+def export_csv_censos(request):
+
+    #Guardo censos
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="censos.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['PK', 'Creacion', 'Actualizacion', 'Autor'])
+
+    censos = Censo.objects.all()
+
+    for censo in censos:
+      writer.writerow([censo.pk, censo.created, censo.updated, censo.autor.pk])
+
+    return response
+    
+
+def export_csv_calles(request):
+    #Guardo calle
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="calles.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['nombre','numeroFrente','anchoVereda', 'paridad','transito', 'pk'])
+
+    calles = Calle.objects.all()
+
+    for calle in calles:
+      writer.writerow([calle.nombre,calle.numeroFrente,calle.anchoVereda, calle.paridad,calle.transito, calle.censo.pk])    
+
+    return response
+
+
+def export_csv_coordenadas(request):
+    #Guardo coordenadas
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="coordenadas.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['latitud','longitud', 'pk'])
+
+    coordenadas = Coordenada.objects.all()
+
+    for coordenada in coordenadas:
+      writer.writerow([coordenada.latitud,coordenada.longitud, coordenada.censo.pk])    
+
+    return response
+
+
+
+def export_csv_arboles(request):
+    #Guardo arboles
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="arboles.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['pk', 'especie','numeroArbol', 'distanciaEntrePlantas',
+         'distanciaAlMuro', 'altura', 'circunferenciaDelArbol', 'cazuela', 'comentario', 'censo.pk'])
+
+    arboles = Arbol.objects.all()
+
+    for arbol in arboles:
+      writer.writerow([arbol.pk, arbol.especie,arbol.numeroArbol, arbol.distanciaEntrePlantas,
+         arbol.distanciaAlMuro, arbol.altura, arbol.circunferenciaDelArbol, arbol.cazuela, arbol.comentario, arbol.censo.pk])    
+
+    return response
+
+
+
+def export_csv_estados(request):
+    #Guardo estados
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="estados.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['estadoSanitario','inclinacion', 'ahuecamiento', 'luminaria', 'danios'
+        ,'veredas', 'podas', 'cordon', 'superficieAfectada', 'afecto', 'cables', 'raices', 'arbol.pk'])
+
+    estados= EstadoDelArbol.objects.all()
+
+    for estado in estados:
+      writer.writerow([estado.estadoSanitario,estado.inclinacion, estado.ahuecamiento, estado.luminaria, estado.danios
+        ,estado.veredas, estado.podas, estado.cordon, estado.superficieAfectada, estado.afecto, estado.cables, estado.raices, estado.arbol.pk])    
+
+    return response    
+
+
+def export_csv_imagenes(request):
+    #Guardo estados
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="imagenes.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['pk', 'image', 'arbol.pk'])
+
+    imagenes= Imagen.objects.all()
+
+    for imagen in imagenes:
+      writer.writerow([imagen.pk, imagen.image, imagen.arbol.pk])    
+
+    return response  
+    
+
+
+def export_csv_usuarios(request):
+    #Guardo estados
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="usuarios.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['pk', 'nombre'])
+
+    usuarios= User.objects.all()
+
+    for usuario in usuarios:
+      writer.writerow([usuario.pk,usuario.username])    
+
+    return response  
 
 
 

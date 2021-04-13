@@ -1,0 +1,806 @@
+[
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 15,
+ "fields": {
+  "created": "2021-02-25T01:33:58.772Z",
+  "updated": "2021-02-25T01:33:58.772Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 16,
+ "fields": {
+  "created": "2021-02-25T12:15:48.642Z",
+  "updated": "2021-02-25T12:15:48.642Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 17,
+ "fields": {
+  "created": "2021-02-25T12:17:32.267Z",
+  "updated": "2021-02-25T12:17:32.267Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 18,
+ "fields": {
+  "created": "2021-02-25T12:26:27.367Z",
+  "updated": "2021-02-25T12:26:27.367Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 19,
+ "fields": {
+  "created": "2021-02-25T12:31:19.451Z",
+  "updated": "2021-02-25T12:31:19.451Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 20,
+ "fields": {
+  "created": "2021-02-25T13:20:41.275Z",
+  "updated": "2021-02-25T13:20:41.275Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 21,
+ "fields": {
+  "created": "2021-02-25T15:14:35.527Z",
+  "updated": "2021-02-25T15:14:35.527Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 22,
+ "fields": {
+  "created": "2021-02-25T15:16:29.789Z",
+  "updated": "2021-02-25T15:16:29.789Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 23,
+ "fields": {
+  "created": "2021-02-25T15:53:47.219Z",
+  "updated": "2021-02-25T15:53:47.219Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 24,
+ "fields": {
+  "created": "2021-03-16T17:55:07.141Z",
+  "updated": "2021-03-16T17:55:07.141Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 25,
+ "fields": {
+  "created": "2021-03-16T17:55:38.469Z",
+  "updated": "2021-03-16T17:55:38.469Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 26,
+ "fields": {
+  "created": "2021-03-16T17:59:08.839Z",
+  "updated": "2021-03-16T17:59:08.839Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.censo",
+ "pk": 27,
+ "fields": {
+  "created": "2021-03-19T13:54:22.793Z",
+  "updated": "2021-03-19T13:54:22.793Z",
+  "autor": 1
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 15,
+ "fields": {
+  "nombre": "",
+  "numeroFrente": 0,
+  "anchoVereda": 0.0,
+  "paridad": " ",
+  "transito": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 16,
+ "fields": {
+  "nombre": "calle 1",
+  "numeroFrente": 10,
+  "anchoVereda": 0.0,
+  "paridad": "IMPAR",
+  "transito": "PARTICULAR"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 17,
+ "fields": {
+  "nombre": "calle2",
+  "numeroFrente": 0,
+  "anchoVereda": 0.0,
+  "paridad": "IMPAR",
+  "transito": "PARTICULAR"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 18,
+ "fields": {
+  "nombre": "",
+  "numeroFrente": 0,
+  "anchoVereda": 0.0,
+  "paridad": " ",
+  "transito": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 19,
+ "fields": {
+  "nombre": "margarita W",
+  "numeroFrente": 40,
+  "anchoVereda": 50.0,
+  "paridad": "PAR",
+  "transito": "PESADO"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 20,
+ "fields": {
+  "nombre": "",
+  "numeroFrente": 0,
+  "anchoVereda": 0.0,
+  "paridad": "IMPAR",
+  "transito": "PARTICULAR"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 21,
+ "fields": {
+  "nombre": "",
+  "numeroFrente": 0,
+  "anchoVereda": 0.0,
+  "paridad": " ",
+  "transito": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 22,
+ "fields": {
+  "nombre": "",
+  "numeroFrente": 0,
+  "anchoVereda": 0.0,
+  "paridad": " ",
+  "transito": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 23,
+ "fields": {
+  "nombre": "",
+  "numeroFrente": 0,
+  "anchoVereda": 0.0,
+  "paridad": "IMPAR",
+  "transito": "PARTICULAR"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 24,
+ "fields": {
+  "nombre": "Calle Nueva",
+  "numeroFrente": 1,
+  "anchoVereda": 40.0,
+  "paridad": "IMPAR",
+  "transito": "PARTICULAR"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 25,
+ "fields": {
+  "nombre": "Calle Nueva",
+  "numeroFrente": 1,
+  "anchoVereda": 40.0,
+  "paridad": "IMPAR",
+  "transito": "PARTICULAR"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 26,
+ "fields": {
+  "nombre": "Ayacucho",
+  "numeroFrente": 3342,
+  "anchoVereda": 250.0,
+  "paridad": "IMPAR",
+  "transito": "PARTICULAR"
+ }
+},
+{
+ "model": "ProyectoWebApp.calle",
+ "pk": 27,
+ "fields": {
+  "nombre": "Calle de Prueba",
+  "numeroFrente": 20,
+  "anchoVereda": 20.0,
+  "paridad": "IMPAR",
+  "transito": "PESADO"
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 15,
+ "fields": {
+  "latitud": -34.708957956179255,
+  "longitud": -58.390474091624164
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 16,
+ "fields": {
+  "latitud": -34.7106611,
+  "longitud": -58.3899043
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 17,
+ "fields": {
+  "latitud": -34.7102539,
+  "longitud": -58.390864
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 18,
+ "fields": {
+  "latitud": -34.7094294,
+  "longitud": -58.3903377
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 19,
+ "fields": {
+  "latitud": -34.7097977,
+  "longitud": -58.3894722
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 20,
+ "fields": {
+  "latitud": -34.707453199999996,
+  "longitud": -58.38311100000001
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 21,
+ "fields": {
+  "latitud": -34.70890574019187,
+  "longitud": -58.390146800445784
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 22,
+ "fields": {
+  "latitud": -34.70890574019187,
+  "longitud": -58.390146800445784
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 23,
+ "fields": {
+  "latitud": -34.707453199999996,
+  "longitud": -58.38311100000001
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 26,
+ "fields": {
+  "latitud": -37.9874724,
+  "longitud": -57.5478297
+ }
+},
+{
+ "model": "ProyectoWebApp.coordenada",
+ "pk": 27,
+ "fields": {
+  "latitud": -34.6984695,
+  "longitud": -58.41092689999999
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 15,
+ "fields": {
+  "especie": " ",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": " ",
+  "comentario": ""
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 16,
+ "fields": {
+  "especie": "Arbol fuccia",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": "NO",
+  "comentario": "Prueba1"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 17,
+ "fields": {
+  "especie": "Alamo plateado",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": " ",
+  "comentario": "Prueba 2"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 18,
+ "fields": {
+  "especie": "Alamo plateado",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": "NO",
+  "comentario": "Prueb3"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 19,
+ "fields": {
+  "especie": "Alamo negro del Canada",
+  "numeroArbol": 11,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 50.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": "SI",
+  "comentario": "Prueba 4"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 20,
+ "fields": {
+  "especie": "Naranjillo",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": " ",
+  "comentario": "Prueba 25-2"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 21,
+ "fields": {
+  "especie": " ",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": " ",
+  "comentario": ""
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 22,
+ "fields": {
+  "especie": "Acacia de constantinopla",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": " ",
+  "comentario": "Prueba video"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 23,
+ "fields": {
+  "especie": "Granado",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 10.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 200.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": "SI",
+  "comentario": "Prueba"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 26,
+ "fields": {
+  "especie": "Abutilo",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 60.0,
+  "distanciaAlMuro": 50.0,
+  "altura": 0.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": "SI",
+  "comentario": "Arbol desde mar del"
+ }
+},
+{
+ "model": "ProyectoWebApp.arbol",
+ "pk": 27,
+ "fields": {
+  "especie": "Braquiquito",
+  "numeroArbol": 1,
+  "distanciaEntrePlantas": 0.0,
+  "distanciaAlMuro": 0.0,
+  "altura": 20.0,
+  "circunferenciaDelArbol": 0.0,
+  "cazuela": "SI",
+  "comentario": "Comentario nuevo 19-3"
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 15,
+ "fields": {
+  "estadoSanitario": " ",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 0,
+  "afecto": " ",
+  "cables": " ",
+  "raices": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 16,
+ "fields": {
+  "estadoSanitario": "D",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 0,
+  "afecto": "Paredes",
+  "cables": " ",
+  "raices": "60%"
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 17,
+ "fields": {
+  "estadoSanitario": "M",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 0,
+  "afecto": " ",
+  "cables": " ",
+  "raices": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 18,
+ "fields": {
+  "estadoSanitario": " ",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": "SI",
+  "veredas": "L",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 0,
+  "afecto": "Piso",
+  "cables": " ",
+  "raices": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 19,
+ "fields": {
+  "estadoSanitario": "D",
+  "inclinacion": "LI",
+  "ahuecamiento": " ",
+  "luminaria": "PE",
+  "danios": "SI",
+  "veredas": "L",
+  "podas": "L",
+  "cordon": 0.0,
+  "superficieAfectada": 4,
+  "afecto": "Paredes",
+  "cables": "PE",
+  "raices": "60%"
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 20,
+ "fields": {
+  "estadoSanitario": " ",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 0,
+  "afecto": " ",
+  "cables": " ",
+  "raices": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 21,
+ "fields": {
+  "estadoSanitario": " ",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 0,
+  "afecto": " ",
+  "cables": " ",
+  "raices": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 22,
+ "fields": {
+  "estadoSanitario": " ",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 0,
+  "afecto": " ",
+  "cables": " ",
+  "raices": " "
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 23,
+ "fields": {
+  "estadoSanitario": "S",
+  "inclinacion": " ",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": "NO",
+  "cordon": 20.0,
+  "superficieAfectada": 2,
+  "afecto": "Piso",
+  "cables": " ",
+  "raices": "20%"
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 26,
+ "fields": {
+  "estadoSanitario": "D",
+  "inclinacion": "LI",
+  "ahuecamiento": " ",
+  "luminaria": "PE",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 0.0,
+  "superficieAfectada": 8,
+  "afecto": "Piso",
+  "cables": "PE",
+  "raices": "80%"
+ }
+},
+{
+ "model": "ProyectoWebApp.estadodelarbol",
+ "pk": 27,
+ "fields": {
+  "estadoSanitario": "D",
+  "inclinacion": "NO",
+  "ahuecamiento": " ",
+  "luminaria": " ",
+  "danios": " ",
+  "veredas": " ",
+  "podas": " ",
+  "cordon": 20.0,
+  "superficieAfectada": 0,
+  "afecto": "Desagües",
+  "cables": "PD",
+  "raices": "40%"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 14,
+ "fields": {
+  "arbol": 15,
+  "image": "media/imagenesArboles/titulo-nico_xaegui"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 15,
+ "fields": {
+  "arbol": 16,
+  "image": "media/imagenesArboles/titulo-2021-02-2509.15.003265170172484343807_gbin1i"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 16,
+ "fields": {
+  "arbol": 17,
+  "image": "media/imagenesArboles/titulo-2021-02-2509.17.046821893299591641542_b6hdzu"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 17,
+ "fields": {
+  "arbol": 18,
+  "image": "media/imagenesArboles/titulo-2021-02-2509.25.568812568634951519779_q8pjxz"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 18,
+ "fields": {
+  "arbol": 19,
+  "image": "media/imagenesArboles/titulo-2021-02-2509.30.292986794645087017309_i5fb0a"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 19,
+ "fields": {
+  "arbol": 19,
+  "image": "media/imagenesArboles/titulo-2021-02-2509.30.414625361704214481377_s0umue"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 20,
+ "fields": {
+  "arbol": 20,
+  "image": "media/imagenesArboles/titulo-capturedImage_13_d0adfh"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 21,
+ "fields": {
+  "arbol": 21,
+  "image": "media/imagenesArboles/titulo-capturedImage_15_gtedxv"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 22,
+ "fields": {
+  "arbol": 22,
+  "image": "media/imagenesArboles/titulo-capturedImage_5_xi0wvy"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 23,
+ "fields": {
+  "arbol": 22,
+  "image": "media/imagenesArboles/titulo-capturedImage_14_gtmpmo"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 24,
+ "fields": {
+  "arbol": 23,
+  "image": "media/imagenesArboles/titulo-nature_big_4_l9w6bh"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 25,
+ "fields": {
+  "arbol": 26,
+  "image": "media/imagenesArboles/titulo-IMG-20210316-WA0007_ipxc1h"
+ }
+},
+{
+ "model": "ProyectoWebApp.imagen",
+ "pk": 26,
+ "fields": {
+  "arbol": 27,
+  "image": "media/imagenesArboles/titulo-IMG_20200911_211238_jo47mf"
+ }
+}
+]

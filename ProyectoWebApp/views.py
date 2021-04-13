@@ -21,7 +21,46 @@ import csv
 from django.http import HttpResponse
 
 
+#asi se hace python manage.py dumpdata ProyectoWebApp.coordenada --indent=1 -o initial_geo_data.json
+def escribir_geojson(request):
 
+    f = open("ProyectoWebApp/static/ProyectoWebApp/json/datos_mapa.geojson", "w")
+
+    coordenadas = Coordenada.objects.all()
+
+    f.write("""{\n"type": "FeatureCollection",\n"crs": { "type": "name", "properties":{ "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },\n"features": [\n""")
+
+    renglon = 0
+    for c in coordenadas:
+
+        #Si es el primer renglon no necesito el salto de linea y la coma
+        if renglon == 0:
+
+          f.write("""{ "type": "Feature", "properties": { "especie": " """ +str(c.censo.arbol.especie)+""" " """ 
+          
+          +"}," #cierra la propiedad 
+
+          + c.__str__() +"}")  #agrega la geometria
+
+        else:  #para los otros renglones si necesito ir al otro renglon y la coma
+
+          f.write(""",\n{ "type": "Feature", "properties": { "especie": " """ +str(c.censo.arbol.especie)+""" " """ 
+          
+          +"}," #cierra la propiedad 
+
+          + c.__str__() +"}")  #agrega la geometria
+
+        renglon = renglon +1 #cambio de renglon
+
+
+    f.write("]\n}")
+
+  
+    f.close()
+
+    return render(request, "ProyectoWebApp/index.html")
+
+  
 
 
 def export_csv_censos(request):
@@ -165,11 +204,9 @@ def servicios(request):
 
     #importar todos los objetos de la base de datos
     arboles = Arbol.objects.all()
-    
 
 
     return render(request, "ProyectoWebApp/services.html", {'arboles':arboles})
-
 
 def contacto(request):
 
@@ -322,7 +359,7 @@ def estadisticas(request):
 
 
 
-
+#Ahora no lo usamos, usamos la funcion mapbox que lee el geojson, es mas rapido que consultar la base de datos
 def servicioMapa(request):
 
     #importar todos los objetos de la base de datos
@@ -340,111 +377,129 @@ def servicioMapa(request):
 
 
 
+def mapbox(request):
+
+ 
+ 
+   
+    diccionario = {'mapbox_access_token': MAPBOX_ACCESS_TOKEN }
+
+   
+
+    return render(request, "ProyectoWebApp/mapbox.html",diccionario)
+
+
+
+
 
 
 @login_required(login_url='/login')
 def nuevoArbol(request):
 
    
+    
+
     ImageFormSet = modelformset_factory(Imagen, form=ImageForm, extra=10, min_num= 1, )
     
     mensajeError = 'Completar los campos marcados con * y enviar una foto como mínimo'
 
+  
+    #Si ingreso con metodo post
     if request.method == "POST":
 
       formset = ImageFormSet(request.POST, request.FILES, queryset=Imagen.objects.none())
 
-     
-
-
+      
+      
+      #Si el formulario se lleno bien
       if formset.is_valid():
-        #muestro que datos llegar
-        print(request.POST) 
+          #muestro que datos llegar
+          print(request.POST) 
 
-        autor = User()
-        autor = request.user
-
-
-        #Cargamos el censo
-        censo = Censo()
-        censo.autor = autor
-        #Guardamos el censo
-        censo.save()
+          autor = User()
+          autor = request.user
 
 
-        #Cargamos la calle de ese censo
-        calle = Calle()
-        calle.censo = censo
-        calle.nombre= request.POST['calle']
-        calle.numeroFrente=  request.POST.get('numeroDeFrente', 0)
-        calle.anchoVereda =request.POST['anchoDeVereda']
-        calle.paridad= request.POST.get('paridad',  ' ')
-        calle.transito= request.POST.get('transito', ' ')
-        #guardado en la base de datos
-        calle.save()
+          #Cargamos el censo
+          censo = Censo()
+          censo.autor = autor
+          #Guardamos el censo
+          censo.save()
 
 
-        #Cargamos la coordenada de ese censo
-        coordenada = Coordenada()
-        coordenada.censo = censo
-        coordenada.latitud= request.POST['lat']
-        coordenada.longitud= request.POST['lon']
-        #guardado en la base de datos
-        coordenada.save()
+          #Cargamos la calle de ese censo
+          calle = Calle()
+          calle.censo = censo
+          calle.nombre= request.POST['calle']
+          calle.numeroFrente=  request.POST.get('numeroDeFrente', 0)
+          calle.anchoVereda =request.POST['anchoDeVereda']
+          calle.paridad= request.POST.get('paridad',  ' ')
+          calle.transito= request.POST.get('transito', ' ')
+          #guardado en la base de datos
+          calle.save()
 
 
-        #Cargamos el arbol
-        arbol = Arbol()
-        arbol.censo = censo
-        arbol.especie = request.POST.get('especie', ' ')
-        arbol.numeroArbol = request.POST['numeroDeArbol']
-        arbol.distanciaEntrePlantas = request.POST['distanciaEntrePlantas']
-        arbol.distanciaAlMuro = request.POST['distanciaAlMuro']
-        arbol.circunferenciaDelArbol = request.POST['circunferencia']
-        arbol.cazuela = request.POST.get('cazuela', ' ' )
-        arbol.comentario = request.POST['comentario']
-        arbol.altura = request.POST['altura']
-        #guardado en la base de datos
-        arbol.save()
+          #Cargamos la coordenada de ese censo
+          coordenada = Coordenada()
+          coordenada.censo = censo
+          coordenada.latitud= request.POST['lat']
+          coordenada.longitud= request.POST['lon']
+          #guardado en la base de datos
+          coordenada.save()
 
-        #cargo el estado del arbol 
-        estadoDelArbol = EstadoDelArbol()
-        estadoDelArbol.arbol = arbol
-        estadoDelArbol.estadoSanitario = request.POST.get('estadoSanitario', ' ' )
-        estadoDelArbol.inclinacion = request.POST.get('inclinacion', ' ' )
-        estadoDelArbol.ahuecamiento= request.POST.get('ahuecamiento', ' ' )
-        estadoDelArbol.luminaria= request.POST.get('luminaria', ' ' )
-        estadoDelArbol.danios= request.POST.get('danios', ' ' )
-        estadoDelArbol.veredas= request.POST.get('daniosVereda', ' ' )
-        estadoDelArbol.podas= request.POST.get('podas', ' ' )
-        estadoDelArbol.cordon= request.POST.get('cordon', ' ' )
-        estadoDelArbol.superficieAfectada= request.POST.get('superficieAfectada', 0 )
-        estadoDelArbol.afecto= request.POST.get('afecto', ' ' )
-        estadoDelArbol.cables= request.POST.get('cables', ' ' )
-        estadoDelArbol.raices= request.POST.get('raices', ' ' )
-        estadoDelArbol.save()
-        
-        
-        #imagen
-        for form in formset.cleaned_data:
-                
-                  if form:
-                      img = form['image']
-                      imagen = Imagen()
-                      imagen.arbol = arbol
-                      imagen.image = img
-                      imagen.save()
-        
-        
-        
-        return galeria(request)
-        
-      else:  #imagenes no validas
 
-        mensajeError = '¡¡¡ El formulario no ha sido válido, verifique enviar una imagen como mínimo... !!!'
+          #Cargamos el arbol
+          arbol = Arbol()
+          arbol.censo = censo
+          arbol.especie = request.POST.get('especie', ' ')
+          arbol.numeroArbol = request.POST['numeroDeArbol']
+          arbol.distanciaEntrePlantas = request.POST['distanciaEntrePlantas']
+          arbol.distanciaAlMuro = request.POST['distanciaAlMuro']
+          arbol.circunferenciaDelArbol = request.POST['circunferencia']
+          arbol.cazuela = request.POST.get('cazuela', ' ' )
+          arbol.comentario = request.POST['comentario']
+          arbol.altura = request.POST['altura']
+          #guardado en la base de datos
+          arbol.save()
+
+          #cargo el estado del arbol 
+          estadoDelArbol = EstadoDelArbol()
+          estadoDelArbol.arbol = arbol
+          estadoDelArbol.estadoSanitario = request.POST.get('estadoSanitario', ' ' )
+          estadoDelArbol.inclinacion = request.POST.get('inclinacion', ' ' )
+          estadoDelArbol.ahuecamiento= request.POST.get('ahuecamiento', ' ' )
+          estadoDelArbol.luminaria= request.POST.get('luminaria', ' ' )
+          estadoDelArbol.danios= request.POST.get('danios', ' ' )
+          estadoDelArbol.veredas= request.POST.get('daniosVereda', ' ' )
+          estadoDelArbol.podas= request.POST.get('podas', ' ' )
+          estadoDelArbol.cordon= request.POST.get('cordon', ' ' )
+          estadoDelArbol.superficieAfectada= request.POST.get('superficieAfectada', 0 )
+          estadoDelArbol.afecto= request.POST.get('afecto', ' ' )
+          estadoDelArbol.cables= request.POST.get('cables', ' ' )
+          estadoDelArbol.raices= request.POST.get('raices', ' ' )
+          estadoDelArbol.save()
+          
+          
+          #imagen
+          for form in formset.cleaned_data:
+                  
+                    if form:
+                        img = form['image']
+                        imagen = Imagen()
+                        imagen.arbol = arbol
+                        imagen.image = img
+                        imagen.save()
+          
+          
+          
+          return galeria(request)
+          
+      else:  #si el formulario no se lleno bien
+
+          mensajeError = '¡¡¡ El formulario no ha sido válido, verifique enviar una imagen como mínimo... !!!'
     
     
-
+      
 
     formset = ImageFormSet(queryset=Imagen.objects.none())
 

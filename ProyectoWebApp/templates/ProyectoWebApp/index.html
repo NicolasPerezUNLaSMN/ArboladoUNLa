@@ -17,7 +17,15 @@
           <div class="image-wrap-2">
             <div class="image-info">
               <h2 class="mb-3">Censar</h2>
-              <a href="{% url 'NuevoArbol' %}" class="btn btn-outline-white py-2 px-4">Cargar árboles</a>
+
+              {% if request.user.is_staff %}
+                <a href="{% url 'NuevoArbol' %}" class="btn btn-outline-white py-2 px-4">Cargar árboles</a>
+
+              {% else %}
+                <a href="{% url 'Login' %}" class="btn btn-outline-white py-2 px-4">Login como miembro del staff</a>
+              {% endif %}
+
+              
             </div>
             <img src="{% static 'ProyectoWebApp/images/censar.jpg' %}" alt="Image" class="img-fluid">
           </div>

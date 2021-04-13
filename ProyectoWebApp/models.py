@@ -14,8 +14,8 @@ class Censo(models.Model):
     #Un usuario tiene muchos Censos
     autor=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
-    def __str__(arbol):
-        return '%s;%s;%s' %(arbol.pk, arbol.created, arbol.updated)
+    def __str__(self):
+        return '%s;%s;%s' %(self.pk, self.created, self.updated)
 
     class Meta:
         verbose_name = "Censo"
@@ -37,8 +37,8 @@ class Calle(models.Model):
     #relacion
     censo = models.OneToOneField(Censo,on_delete=models.CASCADE,primary_key=True,blank=True)
 
-    def __str__(arbol):
-        return '%s;%s;%s;%s;%s;%s' %(arbol.nombre,arbol.numeroFrente,arbol.anchoVereda, arbol.paridad,arbol.transito, arbol.censo.pk)
+    def __str__(self):
+        return '%s;%s;%s;%s;%s;%s' %(self.nombre,self.numeroFrente,self.anchoVereda, self.paridad,self.transito, self.censo.pk)
 
     class Meta:
         verbose_name = "Calle"
@@ -56,8 +56,10 @@ class Coordenada(models.Model):
      #relacion
     censo = models.OneToOneField(Censo,on_delete=models.CASCADE,primary_key=True,blank=True)
 
-    def __str__(arbol):
-        return '%s;%s;%s' %(arbol.latitud, arbol.longitud, arbol.censo.pk)
+    def __str__(self):
+        #return '%s;%s;%s' %(self.latitud, self.longitud, self.censo.pk)
+
+        return """ "geometry": { "type": "Point", "coordinates": [ %s, %s, 0.0 ] }""" %(self.longitud, self.latitud)
 
     class Meta:
         verbose_name = "Coordenada"
@@ -80,9 +82,9 @@ class Arbol(models.Model):
     #relacion
     censo = models.OneToOneField(Censo,on_delete=models.CASCADE,primary_key=True,blank=True)
 
-    def __str__(arbol):
-        return '%s;%s;%s;%s;%s;%s;%s;%s;%s;%s' %(arbol.pk, arbol.especie,arbol.numeroArbol, arbol.distanciaEntrePlantas,
-         arbol.distanciaAlMuro, arbol.altura, arbol.circunferenciaDelArbol, arbol.cazuela, arbol.comentario, arbol.censo.pk)
+    def __str__(self):
+        return '%s;%s;%s;%s;%s;%s;%s;%s;%s;%s' %(self.pk, self.especie,self.numeroArbol, self.distanciaEntrePlantas,
+         self.distanciaAlMuro, self.altura, self.circunferenciaDelArbol, self.cazuela, self.comentario, self.censo.pk)
 
     #imagen=models.ImageField()
     class Meta:
@@ -114,9 +116,9 @@ class EstadoDelArbol(models.Model):
         #relacion
     arbol = models.OneToOneField(Arbol,on_delete=models.CASCADE,primary_key=True,blank=True)
 
-    def __str__(arbol):
-        return '%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s' %(arbol.estadoSanitario,arbol.inclinacion, arbol.ahuecamiento, arbol.luminaria, arbol.danios
-        ,arbol.veredas, arbol.podas, arbol.cordon, arbol.superficieAfectada, arbol.afecto, arbol.cables, arbol.raices, arbol.arbol.pk)
+    def __str__(self):
+        return '%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s' %(self.estadoSanitario,self.inclinacion, self.ahuecamiento, self.luminaria, self.danios
+        ,self.veredas, self.podas, self.cordon, self.superficieAfectada, self.afecto, self.cables, self.raices, self.arbol.pk)
 
 
     class Meta:
@@ -140,8 +142,8 @@ class Imagen(models.Model):
     arbol = models.ForeignKey(Arbol, on_delete=models.CASCADE, null=True,blank=True)
     image = models.ImageField(null=True, blank=True, upload_to=get_image_filename,verbose_name='Image')
 
-    def __str__(arbol):
-        return '%s;%s;%s' %(arbol.pk, arbol.image, arbol.arbol.pk)
+    def __str__(self):
+        return '%s;%s;%s' %(self.pk, self.image, self.arbol.pk)
 
     class Meta:
         verbose_name = "Imagen"

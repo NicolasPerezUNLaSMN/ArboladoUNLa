@@ -1,0 +1,299 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+
+{% block extra_css %}
+<!--<style>
+   #coordenadas {     
+        display: block;
+        position: relative;
+        margin: 0px auto;
+        width: 40%;
+        padding: 5px;
+        border: none;
+        border-radius: 7px;
+        font-size: 15px;
+		    font-family: Montserrat;
+        text-align: center;
+        color: #000;
+        background: #D6EAF8;
+    }
+</style>
+-->
+{% endblock %}
+
+
+
+{% block title %}
+<title>Servicios &mdash; Arbolado Urbano UNLa</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    <div class="site-section"  data-aos="fade">
+      <div class="container-fluid">
+
+        <div class="row justify-content-center">
+
+          <div class="col-md-7">
+            <div class="row mb-5">
+              <div class="col-12 ">
+                <h2 class="site-section-heading text-center">Mapa de árboles</h2>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+       
+
+
+        <div id='map' width="100%" style='height:400px'></div>
+        <!--<pre id='coordenadas'></pre> -->
+          <script  >
+            
+            
+
+            
+
+            
+            mapboxgl.accessToken = '{{ mapbox_access_token }}';
+            
+            var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v10',
+            center: [-64.03, -35.11],
+            zoom: 9,
+           
+           
+            });
+
+              //Coordenadas mouse
+              /*
+              map.on('mousemove', function (e) {
+                    document.getElementById('coordenadas').innerHTML =
+                    JSON.stringify(e.lngLat);
+                    });
+
+                */
+            
+              map.addControl(new MapboxGeocoder({
+                  accessToken: mapboxgl.accessToken
+              }));
+            
+              map.addControl(new mapboxgl.NavigationControl());
+              map.addControl(new mapboxgl.FullscreenControl());
+              map.addControl(new mapboxgl.GeolocateControl({
+                  positionOptions: {
+                      enableHighAccuracy: true
+                  },
+                  trackUserLocation: true
+              }));
+
+
+              map.on('load', function () {
+              // Add a new source from our GeoJSON data and
+              // set the 'cluster' option to true. GL-JS will
+              // add the point_count property to your source data.
+              map.addSource('earthquakes', {
+              type: 'geojson',
+              // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+              // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+              data:  "{% static 'ProyectoWebApp/json/datos_mapa.geojson' %}",
+              cluster: true,
+              clusterMaxZoom: 14, // Max zoom to cluster points on
+              clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+              });
+              
+              map.addLayer({
+              id: 'clusters',
+              type: 'circle',
+              source: 'earthquakes',
+              filter: ['has', 'point_count'],
+              paint: {
+              // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+              // with three steps to implement three types of circles:
+              //   * Blue, 20px circles when point count is less than 100
+              //   * Yellow, 30px circles when point count is between 100 and 750
+              //   * Pink, 40px circles when point count is greater than or equal to 750
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              100,
+              '#f1f075',
+              750,
+              '#f28cb1'
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              }
+              });
+              
+              map.addLayer({
+              id: 'cluster-count',
+              type: 'symbol',
+              source: 'earthquakes',
+              filter: ['has', 'point_count'],
+              layout: {
+              'text-field': '{point_count_abbreviated}',
+              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+              'text-size': 12
+              }
+              });
+              
+              map.addLayer({
+              id: 'unclustered-point',
+              type: 'circle',
+              source: 'earthquakes',
+              filter: ['!', ['has', 'point_count']],
+              paint: {
+              'circle-color': '#11b4da',
+              'circle-radius': 4,
+              'circle-stroke-width': 1,
+              'circle-stroke-color': '#fff'
+              }
+              });
+              
+              // inspect a cluster on click
+              map.on('click', 'clusters', function (e) {
+              var features = map.queryRenderedFeatures(e.point, {
+              layers: ['clusters']
+              });
+              var clusterId = features[0].properties.cluster_id;
+              map.getSource('earthquakes').getClusterExpansionZoom(
+              clusterId,
+              function (err, zoom) {
+              if (err) return;
+              
+              map.easeTo({
+              center: features[0].geometry.coordinates,
+              zoom: zoom
+              });
+              }
+              );
+              });
+              
+              // When a click event occurs on a feature in
+              // the unclustered-point layer, open a popup at
+              // the location of the feature, with
+              // description HTML from its properties.
+              map.on('click', 'unclustered-point', function (e) {
+              var coordinates = e.features[0].geometry.coordinates.slice();
+              var especie = e.features[0].properties.especie;
+              var tsunami;
+              
+              if (e.features[0].properties.tsunami === 1) {
+              tsunami = 'yes';
+              } else {
+              tsunami = 'no';
+              }
+              
+              // Ensure that if the map is zoomed out such that
+              // multiple copies of the feature are visible, the
+              // popup appears over the copy being pointed to.
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+              }
+              
+              new mapboxgl.Popup()
+              .setLngLat(coordinates)
+              .setHTML(
+              'Especie: ' + especie + '<br>Ubicada en: ' + coordinates
+              )
+              .addTo(map);
+              });
+              
+              map.on('mouseenter', 'clusters', function () {
+              map.getCanvas().style.cursor = 'pointer';
+              });
+              map.on('mouseleave', 'clusters', function () {
+              map.getCanvas().style.cursor = '';
+              });
+              });
+              </script>
+
+        
+
+
+       
+
+
+
+      
+
+
+        <!--
+        
+        <div class="row">
+          <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 site-block-feature-7">
+              <span class="icon flaticon-camera display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-white h4">Camera</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+              <p><strong class="font-weight-bold text-primary">$29</strong></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 site-block-feature-7">
+              <span class="icon flaticon-picture display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-white h4">Wedding Photography</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+              <p><strong class="font-weight-bold text-primary">$46</strong></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 site-block-feature-7">
+              <span class="icon flaticon-sheep display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-white h4">Animal</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+              <p><strong class="font-weight-bold text-primary">$24</strong></p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 site-block-feature-7">
+              <span class="icon flaticon-frame display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-white h4">Portrait</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+              <p><strong class="font-weight-bold text-primary">$40</strong></p>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 site-block-feature-7">
+              <span class="icon flaticon-eiffel-tower display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-white h4">Travel</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+              <p><strong class="font-weight-bold text-primary">$35</strong></p>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 site-block-feature-7">
+              <span class="icon flaticon-video-play display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-white h4">Video Editing</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+              <p><strong class="font-weight-bold text-primary">$15</strong></p>
+            </div>
+          </div>
+
+          -->
+
+        </div>
+      </div>
+    </div>
+    {% endblock %}

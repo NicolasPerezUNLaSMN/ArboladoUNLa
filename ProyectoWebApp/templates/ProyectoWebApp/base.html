@@ -96,7 +96,11 @@
                 <li class=" {%if request.path == '/servicios' %}active{% endif%}" ><a href="{% url 'ServicioMapa' %}">Servicios</a></li>
                 <li class=" {%if request.path == '/nosotros' %}active{% endif%}"><a href="{% url 'Estadisticas' %}">Estadisticas</a></li>
                 <li class=" {%if request.path == '/contacto' %}active{% endif%}"><a href="{% url 'Contacto' %}">Contacto</a></li>
+
+                {% if request.user.is_staff %}
                 <li class=" {%if request.path == '/nuevoArbol' %}active{% endif%}"><a href="{% url 'NuevoArbol' %}">Cargar Árbol</a></li>
+                {% endif %}
+
                 <li class="has-children">
                   <a href="#">Usuario: {{request.user.username}}</a>
                   <ul class="dropdown">
@@ -118,7 +122,7 @@
                     <li><a href="{% url 'export_csv_estados' %}">Estados</a></li>
                     <li><a href="{% url 'export_csv_coordenadas' %}">Posiciones</a></li>
                     <li><a href="{% url 'export_csv_imagenes' %}">Fotos</a></li>
-                    <li><a href="{% url 'export_csv_usuarios' %}">usuarios</a></li>
+                    <li><a href="{% url 'export_csv_usuarios' %}">Usuarios</a></li>
                    
                     
                    

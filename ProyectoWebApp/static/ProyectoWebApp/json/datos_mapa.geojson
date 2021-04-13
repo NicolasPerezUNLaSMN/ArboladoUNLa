@@ -1,0 +1,16 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties":{ "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "especie": "   " }, "geometry": { "type": "Point", "coordinates": [ -58.390474091624164, -34.708957956179255, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Arbol fuccia " }, "geometry": { "type": "Point", "coordinates": [ -58.3899043, -34.7106611, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Alamo plateado " }, "geometry": { "type": "Point", "coordinates": [ -58.390864, -34.7102539, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Alamo plateado " }, "geometry": { "type": "Point", "coordinates": [ -58.3903377, -34.7094294, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Alamo negro del Canada " }, "geometry": { "type": "Point", "coordinates": [ -58.3894722, -34.7097977, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Naranjillo " }, "geometry": { "type": "Point", "coordinates": [ -58.38311100000001, -34.707453199999996, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": "   " }, "geometry": { "type": "Point", "coordinates": [ -58.390146800445784, -34.70890574019187, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Acacia de constantinopla " }, "geometry": { "type": "Point", "coordinates": [ -58.390146800445784, -34.70890574019187, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Granado " }, "geometry": { "type": "Point", "coordinates": [ -58.38311100000001, -34.707453199999996, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Abutilo " }, "geometry": { "type": "Point", "coordinates": [ -57.5478297, -37.9874724, 0.0 ] }},
+{ "type": "Feature", "properties": { "especie": " Braquiquito " }, "geometry": { "type": "Point", "coordinates": [ -58.41092689999999, -34.6984695, 0.0 ] }}]
+}
